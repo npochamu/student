@@ -64,7 +64,7 @@
                             <th>在学中</th>
                             <th></th>
                             <th></th>
-                        </tr>
+                        </tr
                         <c:forEach var="student" items="${students}">
                             <tr>
                                 <td>${student.getEnt_Year() }</td>
