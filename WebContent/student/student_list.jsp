@@ -23,34 +23,16 @@
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">入学年度</label>
-                        <select name="year">
+                        <select name="year" required>
                         <option value="">----</option>
-		                <option value="2014">2014</option>
-		                <option value="2015">2015</option>
-		                <option value="2016">2016</option>
-		                <option value="2017">2017</option>
-		                <option value="2018">2018</option>
-		                <option value="2019">2019</option>
-		                <option value="2020">2020</option>
-		                <option value="2021">2021</option>
-		                <option value="2022">2022</option>
-		                <option value="2023">2023</option>
-		                <option value="2024">2024</option>
-		                <option value="2025">2025</option>
-		                <option value="2026">2026</option>
-		                <option value="2027">2027</option>
-		                <option value="2028">2028</option>
-		                <option value="2029">2029</option>
-		                <option value="2030">2030</option>
-		                <option value="2031">2030</option>
-		                <option value="2032">2030</option>
-		                <option value="2033">2030</option>
-		                <option value="20304">2030</option>
+							<%for (int year = 2014; year <= 2034; year++) {%>
+							<option value="<%=year %>" ><%=year %></option>
+							<%}%>
                         </select>
                     </div>
                     <div class="col-4">
                         <label class="form-label" for="student-f2-select">クラス</label>
-                        <select name="class">
+                        <select name="class" required>
 			                <option value="">---</option>
 			                <option value="101">101</option>
 			                <option value="201">201</option>
@@ -91,7 +73,7 @@
                                 <td>${student.getStudent_Name() }</td>
                                 <td>${student.getStudent_Kana() }</td>
                                 <td>${student.getClass_No() }</td>
-                                <td>${all.getStu_Seibetu() }</td>
+                                <td>${student.getStu_Seibetu() }</td>
 
                                 <td><c:choose>
                                       <c:when test="${student.getIs_Attend() }">
@@ -155,4 +137,5 @@
             </c:choose>
         </section>
     </c:param>
+    a
 </c:import>
