@@ -44,8 +44,7 @@
                         </label>
                     </div>
                     <div class="col-2 text-center">
-                        <div><input type="submit" value="登録して終了">
-                        </div>
+                        <button class="btn btn-secondary" id="filter-button" >絞込み</button>
                     </div>
                 </div>
             </form>
