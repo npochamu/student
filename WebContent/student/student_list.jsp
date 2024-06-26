@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <%-- 文字化けの対策 --%>
 <% request.setCharacterEncoding("UTF-8"); %>
 
@@ -84,8 +84,25 @@
                                       </c:otherwise>
                                     </c:choose>
                                 </td>
-
-                                <td><a href="student _update.jsp?Year=${student.getEnt_Year()}&Student_no=${student.getStudent_No()}&Student_name=${student.getStudent_Name()}&Student_kana=${student.getStudent_Kana()}&Class_No=${student.getClass_No()}&Gender=${student.getStu_Seibetu()}&Is_Attend=${student.getIs_Attend()}">変更</a></td>
+								<c:set var="student_name" value="${student.getStudent_Name() }"/>
+                                <c:set var="student_kana" value="${student.getStudent_Kana() }"/>
+                                <c:set var="student_seibetu" value="${student.getStu_Seibetu() }"/>
+                                <%
+                                String student_name = (String) pageContext.getAttribute("student_name");
+                                String encodedName = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedName", encodedName);
+                                %>
+                                <%
+                                String student_kana = (String) pageContext.getAttribute("student_kana");
+                                String encodedKana = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedKana", encodedKana);
+                                %>
+                                <%
+                                String student_seibetu = (String) pageContext.getAttribute("student_seibetu");
+                                String encodedseibetu = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedseibetu", encodedseibetu);
+                                %>
+                                <td><a href="student_update.jsp?Year=${student.getEnt_Year() }&Student_no=${student.getStudent_No()}&Student_name=${encodedName }&Student_kana=${encodedKana }&Class_No=${student.getClass_No()}&Gender=${encodedseibetu }&Is_Atend=${student.getIs_Attend()}">変更</a></td>
                                 <!-- <td><a href="delete?Number=${student.getStudent_No()}">削除</a></td> -->
                             </tr>
                         </c:forEach>
@@ -124,8 +141,25 @@
                                       </c:otherwise>
                                     </c:choose>
                                 </td>
-
-                                <td><a href="student _update.jsp?Year=${all.getEnt_Year()}&Student_no=${all.getStudent_No()}&Student_name=${all.getStudent_Name()}&Student_kana=${all.getStudent_Kana()}&Class_No=${all.getClass_No()}&Gender=${all.getStu_Seibetu()}&Is_Attend=${all.getIs_Attend()}">変更</a></td>
+								<c:set var="student_name" value="${all.getStudent_Name() }"/>
+                                <c:set var="student_kana" value="${all.getStudent_Kana() }"/>
+                                <c:set var="student_seibetu" value="${all.getStu_Seibetu() }"/>
+                                <%
+                                String student_name = (String) pageContext.getAttribute("student_name");
+                                String encodedName = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedName", encodedName);
+                                %>
+                                <%
+                                String student_kana = (String) pageContext.getAttribute("student_kana");
+                                String encodedKana = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedKana", encodedKana);
+                                %>
+                                <%
+                                String student_seibetu = (String) pageContext.getAttribute("student_seibetu");
+                                String encodedseibetu = URLEncoder.encode(student_name, "UTF-8");
+                                request.setAttribute("encodedseibetu", encodedseibetu);
+                                %>
+                                <td><a href="student_update.jsp?Year=${all.getEnt_Year()}&Student_no=${all.getStudent_No()}&Student_name=${encodedName}&Student_kana=${encodedKana}&Class_No=${all.getClass_No()}&Gender=${encodedseibetu}&Is_Attend=${all.getIs_Attend()}">変更</a></td>
                                 <!--<td><a href="delete?Number=${all.getStudent_No()}">削除</a></td>-->
                             </tr>
                         </c:forEach>
