@@ -87,7 +87,7 @@
                                 </td>
 
                                 <td><a href="student _update.jsp?Year=${student.getEnt_Year()}&Student_no=${student.getStudent_No()}&Student_name=${student.getStudent_Name()}&Student_kana=${student.getStudent_Kana()}&Class_No=${student.getClass_No()}&Gender=${student.getStu_Seibetu()}&Is_Attend=${student.getIs_Attend()}">変更</a></td>
-                                <td><a href="delete?Number=${student.getStudent_No()}">削除</a></td>
+                                <!-- <td><a href="delete?Number=${student.getStudent_No()}">削除</a></td> -->
                             </tr>
                         </c:forEach>
                     </table>
@@ -127,7 +127,7 @@
                                 </td>
 
                                 <td><a href="student _update.jsp?Year=${all.getEnt_Year()}&Student_no=${all.getStudent_No()}&Student_name=${all.getStudent_Name()}&Student_kana=${all.getStudent_Kana()}&Class_No=${all.getClass_No()}&Gender=${all.getStu_Seibetu()}&Is_Attend=${all.getIs_Attend()}">変更</a></td>
-                                <td><a href="delete?Number=${all.getStudent_No()}">削除</a></td>
+                                <!--<td><a href="delete?Number=${all.getStudent_No()}">削除</a></td>-->
                             </tr>
                         </c:forEach>
                     </table>
