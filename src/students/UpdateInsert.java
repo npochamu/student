@@ -35,7 +35,7 @@ public class UpdateInsert extends HttpServlet {
 
 				String student_name=request.getParameter("name");
 
-				String ent_year = ""; // デフォルト値を設定
+				String ent_year = "0"; // デフォルト値を設定
 
 				String ent_year_str = request.getParameter("ent_year");
 
@@ -43,6 +43,7 @@ public class UpdateInsert extends HttpServlet {
 				if (ent_year_str != null && !ent_year_str.isEmpty()) {
 	                ent_year = ent_year_str;
 	            }
+				    ent_year = request.getParameter(ent_year_str);
 
 
 				boolean isAttend = request.getParameter("isattend") != null;
