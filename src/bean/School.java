@@ -1,20 +1,22 @@
 package bean;
+
 import java.io.Serializable;
 
 public class School implements Serializable {
-	private String cd;
-	private String name;
-	public String getCd(){
-		return cd;
+	private String schoolCd;
+	private String schoolName;
+
+	public String getSchoolCd() {
+		return schoolCd;
 	}
-	public void setCd(String cd) {
-		this.cd = cd;
+	public void setSchoolCd(String schoolCd) {
+		this.schoolCd = schoolCd;
 	}
-	public  String setName() {
-		return name;
+	public String getSchoolName() {
+		return schoolName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 
 }
