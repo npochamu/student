@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.ClassNum;
-import bean.Student;
 import dao.ClassNumDAO;
-import dao.StudentsDAO;
 import tool.Page;
 
-@WebServlet(urlPatterns={"/students/all"})
-public class All extends HttpServlet {
+@WebServlet(urlPatterns={"/students/classall"})
+public class Classall extends HttpServlet {
 
 	public void doGet (
 		HttpServletRequest request, HttpServletResponse response
@@ -27,8 +25,6 @@ public class All extends HttpServlet {
 		try {
 
 			// ここから
-			StudentsDAO dao=new StudentsDAO();
-			List<Student> list=dao.all();
 			ClassNumDAO dao1=new ClassNumDAO();
 			List<ClassNum> list2=dao1.classall();
 
@@ -36,9 +32,8 @@ public class All extends HttpServlet {
 
 			// ここまで
 
-			request.setAttribute("all", list);
 			request.setAttribute("classall", list2);
-			request.getRequestDispatcher("student_list.jsp")
+			request.getRequestDispatcher("student_in.jsp")
 				.forward(request, response);
 
 		} catch (Exception e) {

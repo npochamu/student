@@ -40,10 +40,10 @@
 		                <option value="2028">2028</option>
 		                <option value="2029">2029</option>
 		                <option value="2030">2030</option>
-		                <option value="2031">2030</option>
-		                <option value="2032">2030</option>
-		                <option value="2033">2030</option>
-		                <option value="20304">2030</option>
+		                <option value="2031">2031</option>
+		                <option value="2032">2032</option>
+		                <option value="2033">2033</option>
+		                <option value="2034">2034</option>
 		                </select>
                     </div>
                     <div class="col-4">
@@ -65,9 +65,10 @@
                     <div class="col-4">
                         <label class="form-label" for="student-f2-select">クラス</label>
                         <select name="class">
-			                <option value="">-</option>
-			                <option value="101">101</option>
-			                <option value="201">201</option>
+			                <option value="">---</option>
+                            <c:forEach var="list2"  items="${classall }" >
+								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
+							</c:forEach>
 			            </select>
                     </div>
 
