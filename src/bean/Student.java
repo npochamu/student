@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Student implements Serializable{
 	private String student_no;
 	private String student_name;
-	private int ent_year;
+	private String ent_year;
 	private boolean is_attend;
 	private String school_cd;
 	private String stu_seibetu;
@@ -26,10 +26,10 @@ public class Student implements Serializable{
 		this.student_name = student_name;
 	}
 
-	public int getEnt_Year(){
+	public String getEnt_Year(){
 		return ent_year;
 	}
-	public void setEnt_Year(int ent_year){
+	public void setEnt_Year(String ent_year){
 		this.ent_year = ent_year;
 	}
 

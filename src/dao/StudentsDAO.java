@@ -25,7 +25,7 @@ public class StudentsDAO extends DAO {
 
 		PreparedStatement st=con.prepareStatement(
 				"select * from student where ENT_YEAR = ? AND class_no = ? AND is_attend = ?");
-		st.setInt(1,  keyword.getEnt_Year());
+		st.setString(1,  keyword.getEnt_Year());
 		st.setString(2,  keyword.getClass_No());
 		st.setBoolean(3, keyword.getIs_Attend());
 		ResultSet rs=st.executeQuery();
@@ -34,7 +34,7 @@ public class StudentsDAO extends DAO {
 			p.setStudent_No(rs.getString("student_no"));
 			p.setStudent_Kana(rs.getString("student_kana"));
 			p.setStudent_Name(rs.getString("student_name"));
-			p.setEnt_Year(rs.getInt("ent_year"));
+			p.setEnt_Year(rs.getString("ent_year"));
 			p.setClass_No(rs.getString("class_no"));
 			p.setStudent_No(rs.getString("student_no"));
 			p.setIs_Attend(rs.getBoolean("is_attend"));
@@ -64,7 +64,7 @@ public class StudentsDAO extends DAO {
 
 		PreparedStatement st=con.prepareStatement(
 			"insert into student values(?, ?, ?, ?, ?, ?, ?, ?)");
-		st.setInt(3, product.getEnt_Year());
+		st.setString(3, product.getEnt_Year());
 		st.setString(1, product.getStudent_No());
 		st.setString(2, product.getStudent_Name());
 		st.setString(7, product.getStu_Seibetu());
@@ -93,7 +93,7 @@ public class StudentsDAO extends DAO {
 
 		while (rs.next()){
 			Student p=new Student();
-			p.setEnt_Year(rs.getInt("ent_year"));
+			p.setEnt_Year(rs.getString("ent_year"));
 			p.setStudent_No(rs.getString("student_no"));
 			p.setSchool_Cd(rs.getString("school_cd"));
 			p.setStudent_Name(rs.getString("student_name"));
@@ -116,7 +116,7 @@ public class StudentsDAO extends DAO {
 
 		PreparedStatement st=con.prepareStatement(
 			    "UPDATE student SET student_name = ?, ent_year = ?, is_attend = ?, stu_seibetu = ?, student_kana = ?, class_no = ? WHERE student_no = ?");
-		st.setInt(2, product.getEnt_Year());
+		st.setString(2, product.getEnt_Year());
 		st.setString(7, product.getStudent_No());
 		st.setString(1, product.getStudent_Name());
 		st.setString(4, product.getStu_Seibetu());
@@ -143,6 +143,25 @@ public class StudentsDAO extends DAO {
 		con.close();
 
 		return count;
-
 	}
+
+
+	 // 学生番号が既に存在するかどうかを確認するメソッド
+	 public boolean isStudentNumberExists(String studentNo) throws Exception {
+       Connection con = getConnection();
+       PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM student WHERE student_no = ?");
+       st.setString(1, studentNo);
+       ResultSet rs = st.executeQuery();
+
+       boolean exists = false;
+       if (rs.next()) {
+           exists = rs.getInt(1) > 0;
+       }
+
+       rs.close();
+       st.close();
+       con.close();
+
+       return exists;
+   }
 }

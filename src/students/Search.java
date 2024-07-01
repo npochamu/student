@@ -25,7 +25,7 @@ public class Search extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		Page.header(out);
 		try {
-			int ent_year=Integer.parseInt(request.getParameter("year"));
+			String ent_year=request.getParameter("year");
 			String class_no=request.getParameter("class");
 			String is_attend=request.getParameter("Zaigaku");
 			boolean isAttend = Boolean.parseBoolean(is_attend);
