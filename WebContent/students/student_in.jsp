@@ -26,6 +26,31 @@
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">入学年度</label>
+<<<<<<< HEAD
+                        <select name="year">
+		                <option value="">-</option>
+		                <option value="2014">2014</option>
+		                <option value="2015">2015</option>
+		                <option value="2016">2016</option>
+		                <option value="2017">2017</option>
+		                <option value="2018">2018</option>
+		                <option value="2019">2019</option>
+		                <option value="2020">2020</option>
+		                <option value="2021">2021</option>
+		                <option value="2022">2022</option>
+		                <option value="2023">2023</option>
+		                <option value="2024">2024</option>
+		                <option value="2025">2025</option>
+		                <option value="2026">2026</option>
+		                <option value="2027">2027</option>
+		                <option value="2028">2028</option>
+		                <option value="2029">2029</option>
+		                <option value="2030">2030</option>
+		                <option value="2031">2031</option>
+		                <option value="2032">2032</option>
+		                <option value="2033">2033</option>
+		                <option value="2034">2034</option>
+		                </select>
                         <select name="year" required>
                         	<option value="">-------</option>
                             <c:forEach var="year" begin="1900" end="2030">
@@ -52,11 +77,20 @@
                     </div>
                     <div class="col-4">
                         <label class="form-label" for="student-f2-select">クラス</label>
+
+                        <select name="class">
+			                <option value="">---</option>
+                            <c:forEach var="list2"  items="${classall }" >
+								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
+							</c:forEach>
+			            </select>
+
                         <select name="class" id="student-f2-select">
                             <option value="101">101</option>
                             <option value="201">201</option>
 
                         </select>
+
                     </div>
 
                     <div class="col-4">

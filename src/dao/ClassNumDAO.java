@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.ClassNum;
 import bean.School;
 
 public class ClassNumDAO extends DAO {
@@ -52,4 +53,25 @@ public class ClassNumDAO extends DAO {
 		    }
 		    return classNumList;
 	}
+		public List<ClassNum> classall() throws Exception {
+			// ここから
+
+			List<ClassNum> list2=new ArrayList<>();
+
+			Connection con=getConnection();
+
+			PreparedStatement st=con.prepareStatement(
+					"select class_no from class_num");
+			ResultSet rs=st.executeQuery();
+
+			while (rs.next()){
+				ClassNum p=new ClassNum();
+				p.setClassNo(rs.getString("class_no"));
+				list2.add(p);
+			}
+			st.close();
+			con.close();
+
+			return list2;
+		}
 }

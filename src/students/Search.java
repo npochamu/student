@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ClassNum;
 import bean.Student;
+import dao.ClassNumDAO;
 import dao.StudentsDAO;
 import tool.Page;
 
@@ -36,10 +38,13 @@ public class Search extends HttpServlet {
 
 			StudentsDAO dao=new StudentsDAO();
 			List<Student> list=dao.search(p);
+			ClassNumDAO dao1=new ClassNumDAO();
+			List<ClassNum> list2=dao1.classall();
 
 			// ここまで
 
 			request.setAttribute("students", list);
+			request.setAttribute("classall", list2);
 			request.getRequestDispatcher("student_list.jsp")
 				.forward(request, response);
 
