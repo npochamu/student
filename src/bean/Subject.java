@@ -12,7 +12,7 @@ public class Subject implements Serializable {
         return schoolCd;
     }
     public void setSchoolCd(String schoolCd) {
-        this.schoolCd = schoolCd;
+        this.schoolCd = "111";
     }
     public String getSubCd() {
         return subCd;

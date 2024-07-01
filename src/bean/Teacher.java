@@ -4,35 +4,33 @@ import java.io.Serializable;
 
 public class Teacher implements Serializable {
 
-	private String id;
+	private String teacherId;
 	private String password;
-	private String name;
-	private School school;
+	private String teacherName;
+	private School schoolCd;
 
-	public String getId(){
-		return id;
+	public String getTeacherId() {
+		return teacherId;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
 	}
-	public String getPassword(){
+	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getName(){
-		return name;
+	public String getTeacherName() {
+		return teacherName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setTeacherName(String teacherName) {
+		this.teacherName = teacherName;
 	}
-	public School getSchool(){
-		return school;
+	public School getSchoolCd() {
+		return schoolCd;
 	}
-	public void setSchool(School school) {
-		this.school = school;
+	public void setSchoolCd(School schoolCd) {
+		this.schoolCd = schoolCd;
 	}
-
-
 }
