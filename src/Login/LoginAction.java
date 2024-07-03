@@ -34,13 +34,14 @@ public class LoginAction extends HttpServlet {
 			session.setAttribute("teacher", teacher);
 			request.getRequestDispatcher("/mein/menu.jsp")
 			.forward(request, response);
-		}
+		}else{
 		request.setAttribute("errorMessage","ユーザ名またはパスワードが違います");
 		request.getRequestDispatcher("/login/login.jsp")
 		.forward(request, response);
-
+		}
 		} catch (Exception e) {
-			e.printStackTrace(out);
+			request.getRequestDispatcher("/login/login-error.jsp")
+			.forward(request, response);
 		}
 		Page.footer(out);
 	}
