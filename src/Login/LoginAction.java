@@ -17,7 +17,7 @@ import tool.Page;
 @WebServlet(urlPatterns={"/login/loginaction"})
 public class LoginAction extends HttpServlet {
 
-	public void doGet (
+	public void doPost (
 		HttpServletRequest request, HttpServletResponse response
 	) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();

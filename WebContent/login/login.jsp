@@ -13,7 +13,7 @@
 	<p style="color: red">
         ${errorMessage}
     </p>
-	<form action="loginaction" method="get">
+	<form action="loginaction" method="post">
 		ユーザID： <input type="text" name="userId" required><br>
 		パスワード： <input type="password" name="password" required><br><br>
 		<input type="submit" value="ログイン">
