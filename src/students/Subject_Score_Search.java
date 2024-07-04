@@ -30,7 +30,7 @@ public class Subject_Score_Search extends HttpServlet {
             // 学生番号のチェック
             if (!Student_Nocheck(student_no)) {
                 request.setAttribute("errorMessage", "学生番号は7桁の数字のみ入力してください。");
-                request.getRequestDispatcher("/students/student_score.jsp").forward(request, response);
+                request.getRequestDispatcher("test_list.jsp").forward(request, response);
                 return;
             }
 
@@ -43,7 +43,7 @@ public class Subject_Score_Search extends HttpServlet {
 			// ここまで
 
 			request.setAttribute("test", list);
-			request.getRequestDispatcher("student_score.jsp").forward(request, response);
+			request.getRequestDispatcher("TestListAction").forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace(out);
