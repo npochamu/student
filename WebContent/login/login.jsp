@@ -23,7 +23,7 @@
 			ユーザID： <input type="text" name="userId" placeholder="半角でご入力ください" maxlength="20" required><br>
 			パスワード： <input type="password" name="password" placeholder="20文字以内の半角英数字でご入力ください" maxlength="20" style="ime-mode: disabled" required><br>
 	    <input type="checkbox" onclick="togglePassword()" name="chk_d_ps">
-	    <label for="chk_d_ps">パスワードを表示</label>
+	    <label for="chk_d_ps">パスワードを表</label>
 
 	    <script type="text/javascript">
 	        // id="password"を取得
