@@ -19,12 +19,12 @@
                     <form action="loginaction" method="post">
                         <div class="form-group">
                             <label for="userId">ID</label>
-                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" maxlength="20" required>
+                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" maxlength="20" style="ime-mode:disabled" required>
                         </div>
                         <div class="form-group">
                             <label for="password">パスワード</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" name="password" placeholder="20文字以内の半角英数字でご入力ください" maxlength="20" required>
+                                <input type="password" class="form-control" name="password" placeholder="20文字以内の半角英数字でご入力ください" maxlength="20" style="ime-mode:disabled" required>
                             </div>
                         </div>
                         <div class="form-group form-check">
