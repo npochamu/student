@@ -9,6 +9,8 @@
 <c:import url="/common/base.jsp">
     <c:param name="title">
         <h1 class="toptitle">得点管理システム</h1>
+        <a>${teacher.getTeacherName()}様</a>
+        <a href="../logout/logoutaction">ログアウト</a>
     </c:param>
 
     <c:param name="scripts"></c:param>

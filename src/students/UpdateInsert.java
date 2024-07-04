@@ -39,13 +39,6 @@ public class UpdateInsert extends HttpServlet {
 
 				ent_year = request.getParameter("ent_year");
 
-				/*String ent_year_str = request.getParameter("ent_year");*/
-				/*if (ent_year_str != null && !ent_year_str.isEmpty()) {
-
-				    ent_year = Integer.parseInt(ent_year_str);
-
-				}*/
-
 				boolean isAttend = request.getParameter("isattend") != null;
 
 				String stu_seibetu=request.getParameter("gender");
