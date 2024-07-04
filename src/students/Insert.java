@@ -79,7 +79,8 @@ public class Insert extends HttpServlet {
                 int line = dao.insert(p);
 
                 if (line > 0) {
-                    request.getRequestDispatcher("/students/student_in_complete.jsp").forward(request, response);
+
+                    request.getRequestDispatcher("/students/sturegiser_complete.jsp").forward(request, response);
                 } else {
                     request.setAttribute("errorMessage", "登録に失敗しました。");
                     request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);

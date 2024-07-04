@@ -143,32 +143,27 @@ public class StudentsDAO extends DAO {
 		con.close();
 
 		return count;
-
-
-
-
-
-
 	}
 
 
-	// 学生番号が既に存在するかどうかを確認するメソッド
-		 public boolean isStudentNumberExists(String studentNo) throws Exception {
-	        Connection con = getConnection();
-	        PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM student WHERE student_no = ?");
-	        st.setString(1, studentNo);
-	        ResultSet rs = st.executeQuery();
 
-	        boolean exists = false;
-	        if (rs.next()) {
-	            exists = rs.getInt(1) > 0;
-	        }
+	 // 学生番号が既に存在するかどうかを確認するメソッド
+	 public boolean isStudentNumberExists(String studentNo) throws Exception {
+       Connection con = getConnection();
+       PreparedStatement st = con.prepareStatement("SELECT COUNT(*) FROM student WHERE student_no = ?");
+       st.setString(1, studentNo);
+       ResultSet rs = st.executeQuery();
 
-	        rs.close();
-	        st.close();
-	        con.close();
+       boolean exists = false;
+       if (rs.next()) {
+           exists = rs.getInt(1) > 0;
+       }
 
-	        return exists;
-	    }
+       rs.close();
+       st.close();
+       con.close();
+
+       return exists;
+   }
 
 }
