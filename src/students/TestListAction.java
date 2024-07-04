@@ -2,6 +2,7 @@ package students;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,10 +10,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import bean.ClassNum;
 import bean.School;
 import bean.Subject;
+import bean.Teacher;
 import dao.ClassNumDAO;
 import dao.SubjectDAO;
 import tool.Page;
@@ -29,24 +31,29 @@ public class TestListAction extends HttpServlet {
     	Page.header(out);
 
         try {
-            // フィルター条件をリクエストから取得
-//                String filterSubCd = request.getParameter("subCd");
-//                String filterClassNo = request.getParameter("classNo");
-//                String filterEntYear = request.getParameter("entYear");
-//                String filterSubCd = "BBB";
-//                String filterClassNo = "101";
-//                String filterEntYear = "2023";
 
-            SubjectDAO subdao = new SubjectDAO();
-            List<Subject> sublist = subdao.getAllSubject();
+			HttpSession session = request.getSession();
+			// セッションスコープからインスタンスを取得
+			Teacher tc = (Teacher)session.getAttribute("teacher");
+            if (tc == null) {
+                response.sendRedirect("test_list.jsp");
+                return;
+            }
+			School sc = new School();
+			sc.setSchoolCd(tc.getSchoolCd().getSchoolCd());
+			System.out.println(sc);
+
+            SubjectDAO subdao = new SubjectDAO(); // Schoolオブジェクトを取得
+            List<Subject> sublist = subdao.getAllSubject(sc);
             request.setAttribute("sublist", sublist);
 
-            School school = new School();
-            school.setSchoolCd("111");  // 仮の学校コードを設定
-
             ClassNumDAO clsdao = new ClassNumDAO();
-            List<ClassNum> clslist = clsdao.filter(school);  // Schoolオブジェクトを渡す
+//            List<ClassNum> clslist = clsdao.filter(school);  // Schoolオブジェクトを渡す
+            List<String> clslist = new ArrayList<>();
+            clslist = clsdao.filter(sc);  // Schoolオブジェクトを渡す
+            System.out.println(clslist);
             request.setAttribute("clslist", clslist);
+
 
 
 
@@ -76,7 +83,7 @@ public class TestListAction extends HttpServlet {
         }
 
         // JSPページにフォワード
-        request.getRequestDispatcher("/students/test_list.jsp").forward(request, response);
+        request.getRequestDispatcher("test_list.jsp").forward(request, response);
         Page.footer(out);
     }
 }

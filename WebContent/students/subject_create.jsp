@@ -1,4 +1,4 @@
-<%-- 学生一覧JSP --%>
+<%-- 科目登録JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,30 +16,50 @@
     <c:param name="content">
         <section class="mo-4">
             <h2>科目情報登録</h2>
-            <form action="update" method="post">
-                <div class="d-flex flex-column border mx-3 mb-3 py-2 px-4 align-items-start rounded" id="filter">
 
-                    <div class="mb-3">
-                        <label class="form-label" for="sub_code">科目名</label>
-                        <input type="text" id="sub_code" name="sub_code" placeholder="科目コードを入力してください" value = "${cd}" required class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="sub_name">科目名</label>
-                        <input type="text" id="sub_name" name="sub_name" placeholder="科目名を入力してください" value = "${name}" required class="form-control">
-                    </div>
+	<form action="SubjectCreateComplete" method="post">
+		<table class="form-table">
+		                    <div class="mb-3">
+			<tr>
+				<td><label class="form-label" for="subCd">科目コード</label></td>
+				<!-- 半角英数字で3桁 -->
+				<td><input type="text" id="subCd" name="subCd" class="form-input"
+					value="${param.subCd!= null ? param.subCd : ''}"
+					pattern="[a-zA-Z0-9]{3}" placeholder="科目コードを入力してください" required title="科目コードは3文字の半角英数字で入力してください" class="form-control">
+					</td>
+			</tr>
+			<tr>
+			</div>
+			<div class="mb-3">
+				<td><label class="form-label" for="subName">科目名</label></td>
+				<td><input type="text" id="subName" name="subName" class="form-input"
+					value="${param.subName!= null ? param.subName : ''}"
+					placeholder="科目名を入力してください"  required class="form-control"></td>
+			</tr>
+			</div>
+		</table>
+
+<!-- 科目コード重複のメッセージ （insert実行前にselect～where文バージョンでのチェック）-->
+				<c:if test="${not empty insertErrorMsg}">
+					<p style="color: red;">${insertErrorMsg}</p>
+		 		</c:if>
+<!-- 科目コード重複のメッセージ （insert文実行時の例外キャッチによるチェック）-->
+				<c:if test="${not empty duplicateMsg}">
+					<p style="color: red;">${duplicateMsg}</p>
+		 		</c:if>
 
 
                     <div class="mb-3 text-center">
-                        <button class="btn btn-secondary" id="filter-button" type="submit">変更</button>
-                    </div>
-                    <div class="mt-2 text-warning">${errors.get("f1")}</div>
-                </div>
-            </form>
+		<button type="submit" class="btn btn-secondary">登録</button>
+<!-- 		<input type="hidden" id="schoolCd" name="schoolCd" value="111"> -->
 
-            <!-- 戻るリンク -->
-            <div>
-                <a href="previousPage.action">戻る</a>
-            </div>
+	</form>
+
+	         <!-- 戻るリンク -->
+     <div>
+			<a href="SubjectListAction">戻る</a>
+     </div>
+
         </section>
     </c:param>
 </c:import>

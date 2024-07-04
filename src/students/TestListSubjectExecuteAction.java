@@ -33,6 +33,12 @@ public class TestListSubjectExecuteAction extends HttpServlet {
         String subject = request.getParameter("subcd");
         String sort = request.getParameter("sort");
 
+        if (year == null || year.isEmpty() || classNum == null || classNum.isEmpty() || subject == null || subject.isEmpty()) {
+            request.setAttribute("errorMessage", "入学年度とクラスと科目を選択してください");
+            request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
+            return;
+        }
+
         List<TestListSubject> testList = null;
         String subjectName = null;
         try {
@@ -55,6 +61,6 @@ public class TestListSubjectExecuteAction extends HttpServlet {
         request.setAttribute("testList", testList);
         request.setAttribute("subjectName", subjectName);
 
-        request.getRequestDispatcher("/students/test_list_subject.jsp").forward(request, response);
+        request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
     }
 }

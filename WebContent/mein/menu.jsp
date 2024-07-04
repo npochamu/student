@@ -31,11 +31,11 @@
     	style="height: 10rem;background-color: #c8e2e6;">
     <p>成績管理</p>
     <a href="#">成績登録</a>
-    <a href="#">成績参照</a>
+    <a href="../students/TestListAction">成績参照</a>
     </div>
     <div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #f2efbd;">
-    <a href="../students/subject_list.jsp">科目管理</a>
+    <a href="../students/SubjectListAction">科目管理</a>
 	</div>
 	</div>
 </div>
