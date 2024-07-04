@@ -15,8 +15,6 @@ public class Test implements java.io.Serializable {
 	private int sub_cd;
 	private String sub_name;
 
-	private int Ent_year;
-	private int Class_no;
 
 
 
@@ -88,17 +86,4 @@ public class Test implements java.io.Serializable {
 		this.sub_name=sub_name;
 	}
 
-//追加
-	public int getEnt_year() {
-		return Ent_year;
-	}
-	public void setEnt_year(int Ent_year) {
-		this.Ent_year=Ent_year;
-	}
-	public int getClass_no() {
-		return Class_no;
-	}
-	public void setClass_no(int Class_no) {
-		this.Class_no=Class_no;
-	}
 }
