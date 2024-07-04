@@ -19,7 +19,7 @@
         <section class="mo-4">
 
             <div class="my-2 text-end px-4">
-                <a>システムエラーだぜ！！</a>
+                <a>エラーだぜ！！</a>
             </div>
         </section>
     </c:param>
