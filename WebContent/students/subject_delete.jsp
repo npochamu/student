@@ -23,43 +23,36 @@
 
 	<c:param name="content">
 		<section class="mo-4">
-			<h2>科目情報削除</h2>
-			<form action="SubjectDeleteComplete" method="post">
-				<table class="form-table">
-					<tr>
-						<%
-							if (subjectBean.getSubName() == null) {
-						%>
-						<td>「<%=(String) request.getParameter("subName")%>（<%=(String) request.getParameter("subCd")%>）」は既に削除されています
-						</td>
-					</tr>
-				</table>
-				<%
-					} else {
-				%>
-				<td>「<%=subjectBean.getSubName()%>（<%=subjectBean.getSubCd()%>）」を削除してもよろしいですか
-				</td>
-				</tr>
-				</table>
-				<button type="submit" class="form-button"
-					style="color: white; background-color: red;">削除</button>
+			<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報削除</h2>
+				<div class="mb-3 col-6">
+				<form action="SubjectDeleteComplete" method="post">
+					<%
+						if (subjectBean.getSubName() == null) {
+					%>
+					「<%=(String) request.getParameter("subName")%>（<%=(String) request.getParameter("subCd")%>）」は既に削除されています
+					<%
+						} else {
+					%>
+					「<%=subjectBean.getSubName()%>（<%=subjectBean.getSubCd()%>）」を削除してもよろしいですか
+				</div>
+				<div class="mb-3 col-6">
+				<button type="submit" class="btn btn-danger">削除</button>
 				<%
 					}
 				%>
-
+				</div>
 				<input type="hidden" name="schoolCd"
-					value="<%=subjectBean.getSchoolCd()%>">
-				<input type="hidden" name="subCd" value="<%=subjectBean.getSubCd()%>">
-				<input type="hidden" name="subName"
-					value="<%=subjectBean.getSubName()%>">
+				value="<%=subjectBean.getSchoolCd()%>"> <input type="hidden"
+				name="subCd" value="<%=subjectBean.getSubCd()%>"> <input
+				type="hidden" name="subName" value="<%=subjectBean.getSubName()%>">
 
-			</form>
+				</form>
 
 			<!-- 戻るリンク -->
-			<div>
+			<div class="mb-3 col-6">
 				<a href="SubjectListAction">戻る</a>
 			</div>
 
-        </section>
-    </c:param>
+		</section>
+	</c:param>
 </c:import>

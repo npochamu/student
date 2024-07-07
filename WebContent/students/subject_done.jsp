@@ -18,16 +18,18 @@
 
 	<c:param name="content">
 		<section class="mo-4">
-			<h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">科目情報${param.view}</h2>
+			<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報${param.view}</h2>
+			<div style="background-color: yellow; text-align: center;">
 			<p>${param.viewMsg}</p>
+			</div>
 
 			<!-- 戻るリンク -->
-			<div>
-				<a href="SubjectListAction">戻る</a>
-			</div>
-			<div>
-				<a href="<%="SubjectListAction"%>">科目一覧</a>
-			</div>
+  <div class="container mt-5">
+    <div>
+      <a href="SubjectListAction" class="mr-5">戻る</a>
+      <a href="<%="SubjectListAction"%>">科目一覧</a>
+    </div>
+  </div>
 		</section>
 	</c:param>
 </c:import>

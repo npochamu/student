@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TestListSubject implements Serializable {
 
-//    private String schoolCd;
+    private String schoolCd;
 	private boolean isAttend;
 	private String subCd;
 	private String subName;
@@ -16,6 +16,13 @@ public class TestListSubject implements Serializable {
     private String seibetu;
     private String test_1;
     private String test_2;
+
+    public String getSchoolCd() {
+    	return schoolCd;
+    }
+    public void setSchoolCd(String schoolCd) {
+    	this.schoolCd = schoolCd;
+	}
 
     public boolean isAttend() {
     	return isAttend;
