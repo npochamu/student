@@ -1,6 +1,19 @@
 <%-- 成績参照JSP 検索画面と成績一覧（学生） --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	<%
+    // セッションを取得
+    HttpSession sessions = request.getSession();
+
+    // "teacher"属性がnullかどうかを確認
+    if (sessions.getAttribute("teacher") == null) {
+        // "teacher"属性がnullの場合、ログインページにフォワード
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        return; // フォワード後に処理を中断
+    }
+%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- 文字化けの対策 --%>
@@ -10,21 +23,6 @@
 
 
 <c:import url="/common/base.jsp">
-    <c:param name="title">
-            <header class="main-header">
-        <nav class="navbar navbar-expand-lg ">
-            <div class="container">
-        <h1 class="toptitle">得点管理システム</h1>
-                <div class="navbar-" id="navbarNav">
-                    <ul class="navbar-nav">
-                            <span>${teacher.getTeacherName()}&nbsp;様&nbsp;&nbsp;&nbsp;</span>
-                            <a  href="../logout/logoutaction"> ログアウト</a>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    </c:param>
 
 	<c:param name="scripts"></c:param>
 	<c:param name="content">

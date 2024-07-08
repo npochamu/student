@@ -1,6 +1,19 @@
 <%-- 学生一覧JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+    <%
+    // セッションを取得
+    HttpSession sessions = request.getSession();
+
+    // "teacher"属性がnullかどうかを確認
+    if (sessions.getAttribute("teacher") == null) {
+        // "teacher"属性がnullの場合、ログインページにフォワード
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        return; // フォワード後に処理を中断
+    }
+%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="/css/bootstrap.min.css" />
 
@@ -25,7 +38,7 @@
                 <p>${insert2}</p>
                 </div>
                 <a href="menu.action" style="margin-right: 15px;">戻る</a>
-                <a href="student_list.jsp">学生一覧</a>
+                <a href="../students/all">学生一覧</a>
             </div>
         </section>
     </c:param>

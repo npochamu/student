@@ -1,106 +1,82 @@
-<%-- 学生一覧JSP --%>
+<%-- 科目変更JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+	<%
+    // セッションを取得
+    HttpSession sessions = request.getSession();
+
+    // "teacher"属性がnullかどうかを確認
+    if (sessions.getAttribute("teacher") == null) {
+        // "teacher"属性がnullの場合、ログインページにフォワード
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        return; // フォワード後に処理を中断
+    }
+%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- 文字化けの対策 --%>
-<%request.setCharacterEncoding("UTF-8");%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
+<%@page import="bean.Subject"%>
+
+
+<%-- subjectBeanから科目情報を取得する --%>
+<%
+	Subject subjectBean = (Subject) request.getAttribute("subjectBean");
+%>
 
 <c:import url="/common/base.jsp">
-	<c:param name="title">
-		<h1 class="toptitle">得点管理システム</h1>
-	</c:param>
 
 	<c:param name="scripts"></c:param>
 
 	<c:param name="content">
 		<section class="mo-4">
-			<h2>学生情報変更</h2>
-			<form action="updateinsert" method="post">
-				<div
-					class="d-flex flex-column border mx-3 mb-3 py-2 px-4 align-items-start rounded"
-					id="filter">
-					<div class="mb-3">
-						<label class="form-label" for="ent_year">入学年度</label> <span
-							id="ent_year">
-							<%
-								String Year = request.getParameter("Year");
-							%><%=Year%></span> <input
-							type="hidden" id="ent_year" name="ent_year" value=<%=Year%>>
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="student_id">学生番号</label> <span
-							id="student_id_display">
-							<%
-								String Student_no = request.getParameter("Student_no");
-							%><%=Student_no%></span>
-						<input type="hidden" id="student_id" name="student_id"
-							value="<%=Student_no%>">
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="name">氏名</label> <input type="text"
-							id="name" name="name" placeholder="氏名を入力してください" required
-							class="form-control"
-							value="<%String Student_name = request.getParameter("Student_name");%><%=Student_name%>">
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="name_kana">フリガナ</label> <input
-							type="text" id="name_kana" name="name_kana"
-							placeholder="フリガナを入力してください" required class="form-control"
-							value="<%String Student_kana = request.getParameter("Student_kana");%><%=Student_kana%>">
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="classnum">クラス</label>
-						<%
-							String Class_No = request.getParameter("Class_No");
-						%>
-						<%
-							request.setAttribute("Class_No", Class_No);
-						%>
-						<select id="classnum" name="classnum" class="form-select">
-							<option value="101"
-								<c:if test="${Class_No == 101}">selected</c:if>>101</option>
-							<option value="201"
-								<c:if test="${Class_No == 201}">selected</c:if>>201</option>
-						</select>
-					</div>
-					<div class="mb-3">
-						<label class="form-label" for="gender">性別</label>
-						<%
-							String Gender = request.getParameter("Gender");
-						%>
-						<%
-							request.setAttribute("Gender", Gender);
-						%>
-						<select id="gender" name="gender" class="form-select">
+			<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報変更</h2>
 
-							<option value="男" <c:if test="${Gender == '男'}">selected</c:if>>男</option>
-							<option value="女" <c:if test="${Gender == '女'}">selected</c:if>>女</option>
-						</select>
-					</div>
-					<div class="mb-3 form-check">
-						<%
-							String Is_Attend = request.getParameter("Is_Attend");
-						%>
-						<%
-							request.setAttribute("Is_Attend", Is_Attend);
-						%>
-						<input class="form-check-input" type="checkbox" id="isattend"
-							name="isattend" value="true"
-							<c:if test="${!empty Is_Attend}">checked</c:if> /> <label
-							class="form-check-label ms-2" for="isattend">在学中</label>
-					</div>
-					<div class="mb-3 text-center">
-						<button type="submit" class="btn btn-secondary" id="filter-button">変更</button>
-					</div>
-					<div class="mt-2 text-warning">${errors.get("f1")}</div>
-				</div>
+			<form action="SubjectUpdateComplete" method="post">
+
+<!-- 						<td><label for="schoolCd">学校コード:</label></td> -->
+<%-- 						<td><%=subjectBean.getSchoolCd()%></td> --%>
+<div class="form-group mb-3 col-6">
+						<llabel class="form-label" for="subCd">科目コード</label>
+						<input class="form-control" type="text" id="subCd"
+						value=${param.subCd!= null ? param.subCd : ''} readonly>
+						<%-- 				${subjectBean.subCd} --%>
+</div>
+<div class="form-group mb-3 col-6" >
+						<label class="form-label" for="subName">科目名</label>
+						<input type="text" id="subName" name="subName"
+							class="form-control" placeholder="科目名を入力してください"
+							value="${param.subName!= null ? param.subName : ''}" required>
+</div>
+				<!-- メッセージ表示：リクエストした科目名と、変更クリック後にサーブレットで取得し直した科目名が異なる場合-->
+				<c:if
+					test="${subjectBean.subName != null && param.subName != subjectBean.subName}">
+					<p style="color: red;">科目名は現在「${subjectBean.subName}」に変更されています</p>
+				</c:if>
+				<!-- メッセージ表示：科目更新対象が削除済だった場合-->
+				<c:if test="${subjectBean.getSubCd()==null}">
+					<p style="color: red;">科目が存在していません</p>
+				</c:if>
+<div class="mb-3 col-3">
+				<button type="submit" class="btn btn-secondary">変更</button>
+</div>
+				<input type="hidden" name="schoolCd" value="${subjectBean.schoolCd}">
+				<input type="hidden" name="subCd" value="${subjectBean.subCd}">
+				<input type="hidden" name="subName" value="${subjectBean.subName}">
+
 			</form>
 
 			<!-- 戻るリンク -->
-			<div>
-				<a href="student_list.jsp">戻る</a>
+			<div class="col-3">
+				<a href="SubjectListAction">戻る</a>
 			</div>
+
 		</section>
 	</c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

@@ -15,6 +15,23 @@
 </head>
 
 <body>
+
+    <c:param name="title">
+            <header class="main-header">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container">
+        <h1 class="toptitle">得点管理システム</h1>
+                <div class="navbar-" id="navbarNav">
+                    <ul class="navbar-nav">
+                            <span>${teacher.getTeacherName()}&nbsp;様&nbsp;&nbsp;&nbsp;</span>
+                            <a  href="../logout/logoutaction"> ログアウト</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    </c:param>
+
 ${param.title}
 <div class="wrapper">
 	<div class="container-fluid content">
