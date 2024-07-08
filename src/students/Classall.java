@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import dao.ClassNumDAO;
@@ -23,6 +24,13 @@ public class Classall extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		Page.header(out);
 		try {
+
+			HttpSession session=request.getSession();
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
 
 			// ここから
 			ClassNumDAO dao1=new ClassNumDAO();

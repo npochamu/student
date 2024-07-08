@@ -46,6 +46,14 @@ public class SubjectDeleteExecuteAction extends HttpServlet {
 
 			School sc = new School();
 			HttpSession session = request.getSession();
+
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
+
 			// セッションスコープからインスタンスを取得
 			Teacher tc = (Teacher)session.getAttribute("teacher");
 			String scCd = tc.getSchoolCd().getSchoolCd();

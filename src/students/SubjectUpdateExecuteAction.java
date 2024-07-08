@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Subject;
 import dao.SubjectDAO;
@@ -40,6 +41,14 @@ public class SubjectUpdateExecuteAction extends HttpServlet {
 		//科目ロジックの作成
 		SubjectDAO dao = new SubjectDAO();
 		try {
+
+			HttpSession session=request.getSession();
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
 			//科目Beanの作成
 			Subject subjectBean = dao.getSubjectBean(request);
 			// DBへ反映

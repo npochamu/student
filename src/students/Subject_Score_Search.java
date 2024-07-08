@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Test;
 import dao.TestDAO;
@@ -25,6 +26,14 @@ public class Subject_Score_Search extends HttpServlet {
 		Page.header(out);
 
 		try {
+
+			HttpSession session=request.getSession();
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
 			String student_no = request.getParameter("student_no");
 
             // 学生番号のチェック
