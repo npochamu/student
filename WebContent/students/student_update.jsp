@@ -20,15 +20,12 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <c:import url="/common/base.jsp">
-<c:param name="title">
-<h1 class="toptitle">得点管理システム</h1>
-</c:param>
 
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
 <section class="mo-4">
-<h2>学生情報変更</h2>
+<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">学生情報変更</h2>
 <form action ="updateinsert" method="post">
 <div class="d-flex flex-column border mx-3 mb-3 py-2 px-4 align-items-start rounded" id="filter">
 <div class="mb-3">
@@ -83,7 +80,7 @@
 
             <!-- 戻るリンク -->
 <div>
-<a href="student_list.jsp">戻る</a>
+<a href="../students/all">戻る</a>
 </div>
 </section>
 </c:param>
