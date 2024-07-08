@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Student;
 import dao.StudentsDAO;
@@ -30,6 +31,14 @@ public class UpdateInsert extends HttpServlet {
 			Page.header(out);
 
 			try {
+
+				HttpSession session = request.getSession();
+
+
+				if (session.getAttribute("teacher") == null) {
+					request.getRequestDispatcher("/login/login.jsp")
+						.forward(request, response);
+				}
 
 				String student_no=request.getParameter("student_id");
 

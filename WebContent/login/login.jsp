@@ -38,6 +38,7 @@
         </div>
     </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>
 
 <script type="text/javascript">
     function togglePassword() {

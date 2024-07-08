@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.TestListSubject;
 import dao.TestListSubjectDAO;
@@ -28,6 +29,15 @@ public class TestListSubjectExecuteAction extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+    	HttpSession session = request.getSession();
+
+
+		if (session.getAttribute("teacher") == null) {
+			request.getRequestDispatcher("/login/login.jsp")
+				.forward(request, response);
+		}
+
         String year = request.getParameter("entYear");
         String classNum = request.getParameter("classNo");
         String subject = request.getParameter("subcd");
