@@ -41,6 +41,80 @@ public class TestDAO extends DAO{
 		return list;
 		// ここまで
 	}
+
+
+	public List<Test> search2(Test keyword) throws Exception {
+		// ここから
+
+		List<Test> list=new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st=con.prepareStatement(
+				"select * from test join student on test.class_no = student.class_no where ENT_YEAR = ? AND test.class_no = ? AND subject_cd = ? AND test_no = ?");
+		st.setString(1,  keyword.getEnt_Year());
+		st.setString(2,  keyword.getClass_Num());
+		st.setString(3, keyword.getSubject_Cd());
+		st.setInt(4, keyword.getTest_No());
+		ResultSet rs=st.executeQuery();
+		while (rs.next()){
+		    Test p=new Test();
+		    p.setEnt_Year(rs.getString("ent_year"));
+		    p.setClass_Num(rs.getString("class_no"));
+		    p.setStudent_No(rs.getString("student_no"));
+		    p.setStudent_Name(rs.getString("student_name"));
+			p.setPoint(rs.getInt("point"));
+			list.add(p);
+
+
+		}
+		System.out.print(list);
+
+		st.close();
+		con.close();
+
+		return list;
+		// ここまで
+	}
+
+
+	public int Insert2(Test p) throws Exception {
+	    	Connection con = getConnection();
+	    	PreparedStatement st=con.prepareStatement(
+	    			"update test set point = ?");
+
+	        st.setInt(1, p.getPoint());
+
+	        int line = st.executeUpdate();
+	        st.close();
+	        return line;
+	    }
+
+	public List<Test> all2() throws Exception {
+		// ここから
+
+		List<Test> list=new ArrayList<>();
+
+		Connection con=getConnection();
+
+		PreparedStatement st=con.prepareStatement(
+				"select * from subject ");
+		ResultSet rs=st.executeQuery();
+
+		while (rs.next()){
+			Test p=new Test();
+			p.setSub_Name(rs.getString("sub_name"));
+			p.setSubject_Cd(rs.getString("sub_cd"));
+			list.add(p);
+		}
+
+		st.close();
+		con.close();
+
+		return list;
+		// ここまで
+	}
+
 }
 
 
