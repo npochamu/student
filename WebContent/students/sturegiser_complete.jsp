@@ -38,7 +38,7 @@
                 <p>${insert2}</p>
                 </div>
                 <a href="menu.action" style="margin-right: 15px;">戻る</a>
-                <a href="student_list.jsp">学生一覧</a>
+                <a href="../students/all">学生一覧</a>
             </div>
         </section>
     </c:param>
