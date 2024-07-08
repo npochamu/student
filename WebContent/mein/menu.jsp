@@ -8,16 +8,26 @@
 
 <c:import url="/common/base.jsp">
     <c:param name="title">
+            <header class="main-header">
+        <nav class="navbar navbar-expand-lg ">
+            <div class="container">
         <h1 class="toptitle">得点管理システム</h1>
-        <a>${teacher.getTeacherName()}様</a>
-        <a href="../logout/logoutaction">ログアウト</a>
+                <div class="navbar-" id="navbarNav">
+                    <ul class="navbar-nav">
+                            <span>${teacher.getTeacherName()}&nbsp;様&nbsp;&nbsp;&nbsp;</span>
+                            <a  href="../logout/logoutaction"> ログアウト</a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     </c:param>
 
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
         <section class="mo-4">
-            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">メニュー</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">メニュー</h2>
 
 
 
@@ -30,7 +40,7 @@
     <div class="col d-flex  flex-column align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #c8e2e6;">
     <p>成績管理</p>
-    <a href="#">成績登録</a>
+    <a href="../students/test_insert">成績登録</a>
     <a href="../students/TestListAction">成績参照</a>
     </div>
     <div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
@@ -43,3 +53,4 @@
 </section>
 </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

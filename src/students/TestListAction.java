@@ -39,6 +39,7 @@ public class TestListAction extends HttpServlet {
                 response.sendRedirect("test_list.jsp");
                 return;
             }
+
 			School sc = new School();
 			sc.setSchoolCd(tc.getSchoolCd().getSchoolCd());
 			System.out.println(sc);
@@ -53,29 +54,6 @@ public class TestListAction extends HttpServlet {
             clslist = clsdao.filter(sc);  // Schoolオブジェクトを渡す
             System.out.println(clslist);
             request.setAttribute("clslist", clslist);
-
-
-
-
-            // フィルター条件に基づいてリストをフィルタリング
-//                if (filterSubCd != null && !filterSubCd.isEmpty()) {
-//                    list = list.stream()
-//                               .filter(tls -> tls.getSubCd().equals(filterSubCd))
-//                               .collect(Collectors.toList());
-//                }
-//                if (filterClassNo != null && !filterClassNo.isEmpty()) {
-//                    list = list.stream()
-//                               .filter(tls -> tls.getClassNo().equals(filterClassNo))
-//                               .collect(Collectors.toList());
-//                }
-//                if (filterEntYear != null && !filterEntYear.isEmpty()) {
-//                    list = list.stream()
-//                               .filter(tls -> tls.getEntYear().equals(filterEntYear))
-//                               .collect(Collectors.toList());
-//                }
-
-            // フィルターされたリストをリクエストにセット
-//                request.setAttribute("items", list);
 
 
         } catch (Exception e) {

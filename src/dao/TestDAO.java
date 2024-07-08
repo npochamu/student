@@ -42,7 +42,6 @@ public class TestDAO extends DAO{
 		// ここまで
 	}
 
-
 	public List<Test> search2(Test keyword) throws Exception {
 		// ここから
 
@@ -113,6 +112,33 @@ public class TestDAO extends DAO{
 
 		return list;
 		// ここまで
+	}
+
+	//学生番号から学生情報を取得
+	public Test getTestBean(String stuNo) throws Exception {
+		//試験情報を初期化
+		Test testBean = new Test();
+		//学生を取得するSQL
+		String sql = "SELECT student_no, student_name FROM STUDENT where student_no=? ";
+
+		//SQL実行の準備
+		try (Connection con = getConnection();
+				PreparedStatement st = con.prepareStatement(sql);) {
+			//パラメータをSQLにセット
+			st.setString(1, stuNo);
+			//SQL文を表示
+			System.out.println(st.toString());
+
+			//SQL実行
+			ResultSet rs = st.executeQuery();
+			//取得した行数を繰り返す
+			while (rs.next()) {
+				//取得した値を科目Beanにセット
+				testBean.setStudent_No(rs.getString("student_no"));
+				testBean.setStudent_Name(rs.getString("student_name"));
+			}
+		}
+		return testBean;
 	}
 
 }

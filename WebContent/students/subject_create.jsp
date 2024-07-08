@@ -15,29 +15,23 @@
 
     <c:param name="content">
         <section class="mo-4">
-            <h2>科目情報登録</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報登録</h2>
 
 	<form action="SubjectCreateComplete" method="post">
-		<table class="form-table">
-		                    <div class="mb-3">
-			<tr>
-				<td><label class="form-label" for="subCd">科目コード</label></td>
+		                    <div class="mb-3 col-6">
+				<label class="form-label" for="subCd">科目コード</label>
 				<!-- 半角英数字で3桁 -->
-				<td><input type="text" id="subCd" name="subCd" class="form-input"
+				<input type="text" id="subCd" name="subCd" class="form-control"
 					value="${param.subCd!= null ? param.subCd : ''}"
 					pattern="[a-zA-Z0-9]{3}" placeholder="科目コードを入力してください" required title="科目コードは3文字の半角英数字で入力してください" class="form-control">
-					</td>
-			</tr>
-			<tr>
+<small class="form-text text-muted">※3文字の半角英数字</small>
 			</div>
-			<div class="mb-3">
-				<td><label class="form-label" for="subName">科目名</label></td>
-				<td><input type="text" id="subName" name="subName" class="form-input"
+			<div class="mb-3 col-6">
+				<label class="form-label" for="subName">科目名</label>
+				<input type="text" id="subName" name="subName" class="form-control"
 					value="${param.subName!= null ? param.subName : ''}"
-					placeholder="科目名を入力してください"  required class="form-control"></td>
-			</tr>
+					placeholder="科目名を入力してください"  required class="form-control">
 			</div>
-		</table>
 
 <!-- 科目コード重複のメッセージ （insert実行前にselect～where文バージョンでのチェック）-->
 				<c:if test="${not empty insertErrorMsg}">
@@ -49,14 +43,15 @@
 		 		</c:if>
 
 
-                    <div class="mb-3 text-center">
+                    <div class="mb-3 col-6">
 		<button type="submit" class="btn btn-secondary">登録</button>
+		</div>
 <!-- 		<input type="hidden" id="schoolCd" name="schoolCd" value="111"> -->
 
 	</form>
 
 	         <!-- 戻るリンク -->
-     <div>
+     <div class="mb-3 col-6">
 			<a href="SubjectListAction">戻る</a>
      </div>
 
