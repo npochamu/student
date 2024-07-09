@@ -37,13 +37,14 @@
 			<c:choose>
 				<c:when test="${not empty testList}">
 
-					<p>
+					<p class="m-0">科目：${testList[0].subName}
+						<span class="d-block text-right">
 						並び替え: <a
-							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=studentNo">学生番号順</a>
+							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=studentNo" class="mx-1">学生番号順</a>
 						<a
 							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=kana">フリガナ順</a>
-					</p>
-					<p>科目：${testList[0].subName}</p>
+					</span></p>
+
 
 					<table class="table table-hover">
 						<%--     <caption>科目：${testList[0].subName}</caption> --%>

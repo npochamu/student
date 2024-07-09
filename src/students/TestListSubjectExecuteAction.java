@@ -44,7 +44,7 @@ public class TestListSubjectExecuteAction extends HttpServlet {
         String sort = request.getParameter("sort");
 
         if (year == null || year.isEmpty() || classNum == null || classNum.isEmpty() || subject == null || subject.isEmpty()) {
-            request.setAttribute("errorMessage", "入学年度とクラスと科目を選択してください");
+            request.setAttribute("eMessage", "入学年度とクラスと科目を選択してください");
             request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
             return;
         }
@@ -58,7 +58,7 @@ public class TestListSubjectExecuteAction extends HttpServlet {
                 subjectName = testList.get(0).getSubName();
             }
 
-            // Sort list if needed
+            // カナ、性別のソート
             if ("kana".equals(sort)) {
                 Collections.sort(testList, Comparator.comparing(TestListSubject::getKana));
             } else if ("studentNo".equals(sort)) {
@@ -70,6 +70,8 @@ public class TestListSubjectExecuteAction extends HttpServlet {
 
         request.setAttribute("testList", testList);
         request.setAttribute("subjectName", subjectName);
+
+        request.setAttribute("entYear", year);
 
         request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
     }
