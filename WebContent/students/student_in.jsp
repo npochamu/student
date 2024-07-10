@@ -62,9 +62,9 @@
                         <label class="form-label" for="student-f2-select">クラス</label>
 
                         <select name="class" class="form-control" required>
-			                <option value="">---</option>
+                        	<option value="">---</option>
                             <c:forEach var="list2"  items="${classall }" >
-								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
+								<option value="${list2.getClassNo() }" <c:if test="${param.list2.getClassNo() == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
 							</c:forEach>
 			            </select>
 
