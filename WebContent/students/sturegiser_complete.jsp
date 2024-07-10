@@ -33,7 +33,9 @@
             	<div style="background-color: lightgreen; text-align: center;">
                 <p>${insert2}だみー２</p>
                 </div>
-                <a href="classall" style="margin-right: 15px;">戻る</a>
+				<c:if test="${insert == '学生情報登録' }">
+                	<a href="classall" style="margin-right: 15px;">戻る</a>
+                </c:if>
                 <a href="../students/all">学生一覧</a>
             </div>
         </section>

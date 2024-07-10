@@ -51,8 +51,9 @@
 <%String Class_No=request.getParameter("Class_No"); %>
 <%request.setAttribute("Class_No", Class_No); %>
 <select id="classnum" name="classnum" class="form-control">
-<option value="101" <c:if test="${Class_No == 101}">selected</c:if>>101</option>
-<option value="201" <c:if test="${Class_No == 201}">selected</c:if>>201</option>
+<c:forEach var="list2"  items="${classall }" >
+<option value="${list2.getClassNo() }" <c:if test="${Class_No == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
+</c:forEach>
 </select>
 </div>
 <div class="mb-3">
@@ -68,7 +69,7 @@
 <div class="mb-3 form-check">
 <%String Is_Attend=request.getParameter("Is_Attend"); %>
 <%request.setAttribute("Is_Attend", Is_Attend); %>
-<input class="form-check-input" type="checkbox" id="isattend" name="isattend" value="true" <c:if test="${!empty Is_Attend}">checked</c:if> />
+<input class="form-check-input" type="checkbox" id="isattend" name="isattend" value="true" <c:if test="${Is_Attend}">checked</c:if> />
 <label class="form-check-label ms-2" for="isattend" >在学中</label>
 </div>
 <div class="mb-3 text-center">
