@@ -39,7 +39,7 @@ public class Insert extends HttpServlet {
             String school_cd = request.getParameter("sc_cd");
             String stu_seibetu = request.getParameter("gender");
             String student_kana = request.getParameter("name_huri");
-            String class_no = request.getParameter("class");
+            String class_no = request.getParameter("classno");
 
             // 必須項目のチェック
             if (ent_year == null || ent_year.isEmpty() || stu_seibetu == null || stu_seibetu.isEmpty()) {
