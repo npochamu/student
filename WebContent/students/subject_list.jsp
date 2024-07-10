@@ -33,13 +33,13 @@
                 <a href="SubjectCreateAction">新規登録</a>
             </div>
 
-            <table class="table table-hover">
+            <table class="table table-hover m-3" style="width: 80%">
                 <thead>
                     <tr>
-                        <th>科目コード</th>
-                        <th>科目名</th>
-                        <th></th>
-                        <th></th>
+                      <th style="width: 20%">科目コード</th>
+                        <th style="width: 40%">科目名</th>
+                        <th style="width: 20%">
+                        <th style="width: 20%">
                     </tr>
                 </thead>
                 <tbody>

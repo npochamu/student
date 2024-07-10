@@ -33,7 +33,7 @@
 	<div class="col-2 sidebar">
 	</div>
 	<div class="col-10">
-		<div class=" mx-4 mb-4 py-1 align-items-center">
+		<div class=" mx-3 mb-4 align-items-center">
 			<c:choose>
 				<c:when test="${not empty testList}">
 

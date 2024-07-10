@@ -28,14 +28,20 @@
 	<c:param name="content">
 		<section class="mo-4">
 			<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報${param.view}</h2>
-			<div style="background-color: yellow; text-align: center;">
+<!-- 			○○が完了しましたのメッセージ -->
+<div class="my-2 text-end px-4">
+			<div style="background-color: lightgreen; text-align: center;">
 			<p>${param.viewMsg}</p>
 			</div>
+			</div>
 
-			<!-- 戻るリンク -->
+			<!-- リンク -->
   <div class="container mt-5">
     <div>
-      <a href="SubjectListAction" class="mr-5">戻る</a>
+<!--     科目情報登録完了の時だけ新規登録画面へ戻るリンクを表示 -->
+					<c:if test="${param.view == '登録'}">
+						<a href="SubjectCreateAction" class="mr-5">戻る</a>
+					</c:if>
       <a href="<%="SubjectListAction"%>">科目一覧</a>
     </div>
   </div>

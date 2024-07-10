@@ -36,6 +36,9 @@ public class Subject_Score_Search extends HttpServlet {
 
 			String student_no = request.getParameter("student_no");
 
+			//			フォワード先で表示切替に使用
+			request.setAttribute("isFromTestStudent", true );
+
             // 学生番号のチェック
             if (!Student_Nocheck(student_no)) {
                 request.setAttribute("errorMessage", "学生番号は7桁の半角数字で入力してください");

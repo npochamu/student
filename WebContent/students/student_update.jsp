@@ -50,7 +50,7 @@
 <label class="form-label" for="classnum">クラス</label>
 <%String Class_No=request.getParameter("Class_No"); %>
 <%request.setAttribute("Class_No", Class_No); %>
-<select id="classnum" name="classnum" class="form-select">
+<select id="classnum" name="classnum" class="form-control">
 <option value="101" <c:if test="${Class_No == 101}">selected</c:if>>101</option>
 <option value="201" <c:if test="${Class_No == 201}">selected</c:if>>201</option>
 </select>
@@ -59,7 +59,7 @@
 <label class="form-label" for="gender">性別</label>
 <%String Gender=request.getParameter("Gender"); %>
 <%request.setAttribute("Gender", Gender); %>
-<select id="gender" name="gender" class="form-select">
+<select id="gender" name="gender" class="form-control">
 
 <option value="男" <c:if test="${Gender == '男'}">selected</c:if>>男</option>
 <option value="女" <c:if test="${Gender == '女'}">selected</c:if>>女</option>
@@ -79,9 +79,10 @@
 </form>
 
             <!-- 戻るリンク -->
-<div>
+<div class="m-3">
 <a href="../students/all">戻る</a>
 </div>
 </section>
 </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

@@ -20,7 +20,7 @@
             <header class="main-header">
         <nav class="navbar navbar-expand-lg ">
             <div class="container">
-        <h1 class="toptitle zen-maru-gothic-regular">得点管理システム</h1>
+        <h1 class="toptitle">得点管理システム</h1>
         </div></nav></header>
 <%-- ${param.title} --%>
 ${param.scripts}

@@ -44,7 +44,7 @@
 		</c:choose>
 
 
-		<div class="container mb-4 border rounded py-2 px-4">
+		<div class="container mb-4 border rounded py-2 px-4" style="width: 97%">
 			<form action="TestListSubjectAction" method="get">
 				<div class="form-row align-items-center">
 					<div class="col-auto pr-4">
@@ -124,16 +124,18 @@
 				<p style="color: blue;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
 			</c:if>
 		</div>
+
+		<div class="container mx-3 mb-3">
 		<c:choose>
 			<c:when test="${test.size()>0}">
 				<div>検索結果:${test.size()}件</div>
 				<p>氏名：${test[0].student_Name}（${test[0].student_No}）</p>
-				<table class="table table-hover">
+				<table class="table table-hover" style="width: 80%">
 					<tr>
-						<th>科目名</th>
-						<th>科目コード</th>
-						<th>回数</th>
-						<th>点数</th>
+						<th style="width: 40%">科目名</th>
+						<th style="width: 20%">科目コード</th>
+						<th style="width: 20%">回数</th>
+						<th style="width: 20%">点数</th>
 					</tr>
 					<c:forEach var="test" items="${test}">
 						<tr>
@@ -151,7 +153,7 @@
 				<div>成績情報が存在しませんでした</div>
 			</c:when>
 		</c:choose>
-
+</div>
 
 		</section>
 	</c:param>

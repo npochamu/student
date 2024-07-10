@@ -19,7 +19,7 @@
 	position: sticky;
 	top: 10px;
 	height: 100%;
-	margin-bottom: 100px;
+	margin-bottom: 60px;
 	padding-top: 40px;
 }
 
@@ -44,7 +44,7 @@
             <header class="main-header">
         <nav class="navbar navbar-expand-lg ">
             <div class="container">
-        <h1 class="toptitle zen-maru-gothic-regular">得点管理システム</h1>
+        <h1 class="toptitle">得点管理システム</h1>
                 <div class="navbar-" id="navbarNav">
                     <ul class="navbar-nav">
                             <span>${teacher.getTeacherName()}&nbsp;様&nbsp;&nbsp;&nbsp;</span>
@@ -67,6 +67,7 @@
 					<ul class="nav nav-sidebar flex-column">
 						<li><a href="../mein/menu.jsp">メニュー</a></li>
 						<li><a href="../students/all">学生管理</a></li>
+						<li><a style="color:gray; pointer-events: none; cursor: default;">成績管理</a></li>
 						<li><a href="#">成績登録</a></li>
 						<li><a href="../students/TestListAction">成績参照</a></li>
 						<li><a href="../students/SubjectListAction">科目管理</a></li>

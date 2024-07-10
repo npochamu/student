@@ -33,16 +33,16 @@
             <form action="search" method="post">
 
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
-                    <div class="col-4">
+                    <div class="col-3">
                         <label class="form-label" for="student-f1-select">入学年度</label>
                         <select name="year" class="form-control" required>
                         <option value="">----</option>
-							<%for (int year = 2014; year <= 2034; year++) {%>
+							<%for (int year = 2014; year <= 2025; year++) {%>
 							<option value="<%=year %>" ><%=year %></option>
 							<%}%>
                         </select>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <label class="form-label" for="student-f2-select">クラス</label>
                         <select name="class" class="form-control" required>
 			                <option value="">---</option>
@@ -63,8 +63,8 @@
             </form>
             <c:choose>
                 <c:when test="${students.size()>0}">
-                    <div>検索結果:${students.size()}件</div>
-                    <table class="table table-hover">
+                    <div class="ml-3">検索結果:${students.size()}件</div>
+                    <table class="table table-hover ml-3" style="width: 98%">
                         <tr>
                             <th>入学年度</th>
                             <th>学生番号</th>
@@ -121,8 +121,8 @@
                     </table>
                 </c:when>
                 <c:when test="${all.size()>0}">
-                	<div>検索結果:${all.size()}件</div>
-                    <table class="table table-hover">
+                	<div class="ml-3">検索結果:${all.size()}件</div>
+                    <table class="table table-hover ml-3" style="width: 98%">
                         <tr>
                             <th>入学年度</th>
                             <th>学生番号</th>
@@ -178,10 +178,10 @@
                     </table>
                 </c:when>
                 <c:otherwise>
-                    <div>学生情報が存在しませんでした</div>
+                    <div class="ml-3">学生情報が存在しませんでした</div>
                 </c:otherwise>
             </c:choose>
         </section>
     </c:param>
 </c:import>
-<%-- <c:import url="/common/footer.jsp"/> --%>
+<c:import url="/common/footer.jsp"/>
