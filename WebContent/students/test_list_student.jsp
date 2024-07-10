@@ -19,14 +19,14 @@
 <%-- 文字化けの対策 --%>
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<%-- <%@ page import="bean.Subject, dao.SubjectDAO, java.util.List" %> --%>
+<%@ page import="bean.Subject, dao.TestListSubjectDAO, java.util.List" %>
 
 <%-- <%
-// CourseDAOクラスを用いて、全コースの情報を取得。
-    SubjectDAO dao = new SubjectDAO();
+// TestListSubjectDAOクラスを用いて、全コースの情報を取得。
+    TestListSubjectDAO dao = new TestListSubjectDAO();
     List<Subject> list = dao.selectAll();
-%> --%>
-
+%>
+ --%>
 <c:import url="/common/base.jsp">
     <c:param name="title">
         <h1 class="toptitle">得点管理システム</h1>
@@ -36,12 +36,11 @@
 
     <c:param name="content">
         <section class="mo-4">
-            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
-            <div class="my-2 text-end px-4">
-                <a href="student_in.jsp">新規登録</a>
-            </div>
+            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理(科目)</h2>
+
             <form action="search" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+                    <div>科目情報</div>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">入学年度</label>
                         <select name="year">
@@ -70,14 +69,25 @@
                     <% } %> --%>
                 </select>
                     </div>
-                    <div class="col-4">
-                        <label class="form-label" for="student-f2-select">回数</label>
-                        <select name="class">
-			                <option value="">---</option>
-			                <option value="1">1</option>
-			                <option value="2">2</option>
-                        </select>
+                    <div class="col-2 text-center">
+                        <div><input type="submit" value="検索">
+                        </div>
                     </div>
+                </div>
+            </form>
+
+
+            <form action="search" method="post">
+                <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
+
+                <div>学生情報</div>
+                <div class="mb-3">
+                    <label class="form-label" for="sub_name">学生番号</label>
+                    <input type="text" id="sub_name" name="sub_name" placeholder="学生番号を入力してください" value = "${name}" required class="form-control">
+                </div>
+
+
+
                     <div class="col-2 text-center">
                         <div><input type="submit" value="検索">
                         </div>

@@ -1,44 +1,82 @@
-<%-- 学生一覧JSP --%>
+<%-- 科目変更JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	pageEncoding="UTF-8"%>
+
+	<%
+    // セッションを取得
+    HttpSession sessions = request.getSession();
+
+    // "teacher"属性がnullかどうかを確認
+    if (sessions.getAttribute("teacher") == null) {
+        // "teacher"属性がnullの場合、ログインページにフォワード
+        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
+        return; // フォワード後に処理を中断
+    }
+%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- 文字化けの対策 --%>
-<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+
+<%@page import="bean.Subject"%>
+
+
+<%-- subjectBeanから科目情報を取得する --%>
+<%
+	Subject subjectBean = (Subject) request.getAttribute("subjectBean");
+%>
 
 <c:import url="/common/base.jsp">
-    <c:param name="title">
-        <h1 class="toptitle">得点管理システム</h1>
-    </c:param>
 
-    <c:param name="scripts"></c:param>
+	<c:param name="scripts"></c:param>
 
-    <c:param name="content">
-        <section class="mo-4">
-            <h2>科目情報変更</h2>
-            <form action="update" method="post">
-                <div class="d-flex flex-column border mx-3 mb-3 py-2 px-4 align-items-start rounded" id="filter">
-                    <div class="mb-3">
-                        <label class="form-label" for="sub_code">科目コード</label>
-                        <input type="hidden" id="sub_code" name="sub_code" value="${code}">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="sub_name">科目名</label>
-                        <input type="text" id="sub_name" name="sub_name" placeholder="" value = "${name}" required class="form-control">
-                    </div>
+	<c:param name="content">
+		<section class="mo-4">
+			<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">科目情報変更</h2>
 
+			<form action="SubjectUpdateComplete" method="post">
 
-                    <div class="mb-3 text-center">
-                        <button class="btn btn-secondary" id="filter-button" type="submit">変更</button>
-                    </div>
-                    <div class="mt-2 text-warning">${errors.get("f1")}</div>
-                </div>
-            </form>
+<!-- 						<td><label for="schoolCd">学校コード:</label></td> -->
+<%-- 						<td><%=subjectBean.getSchoolCd()%></td> --%>
+<div class="form-group mb-3 col-6">
+						<llabel class="form-label" for="subCd">科目コード</label>
+						<input class="form-control" type="text" id="subCd"
+						value=${param.subCd!= null ? param.subCd : ''} readonly>
+						<%-- 				${subjectBean.subCd} --%>
+</div>
+<div class="form-group mb-3 col-6" >
+						<label class="form-label" for="subName">科目名</label>
+						<input type="text" id="subName" name="subName"
+							class="form-control" placeholder="科目名を入力してください"
+							value="${param.subName!= null ? param.subName : ''}" required>
+</div>
+				<!-- メッセージ表示：リクエストした科目名と、変更クリック後にサーブレットで取得し直した科目名が異なる場合-->
+				<c:if
+					test="${subjectBean.subName != null && param.subName != subjectBean.subName}">
+					<p class="ml-3" style="color: red;">科目名は現在「${subjectBean.subName}」に変更されています</p>
+				</c:if>
+				<!-- メッセージ表示：科目更新対象が削除済だった場合-->
+				<c:if test="${subjectBean.getSubCd()==null}">
+					<p class="ml-3" style="color: red;">科目が存在していません</p>
+				</c:if>
+<div class="mb-3 col-3">
+				<button type="submit" class="btn btn-secondary">変更</button>
+</div>
+				<input type="hidden" name="schoolCd" value="${subjectBean.schoolCd}">
+				<input type="hidden" name="subCd" value="${subjectBean.subCd}">
+				<input type="hidden" name="subName" value="${subjectBean.subName}">
 
-            <!-- 戻るリンク -->
-            <div>
-                <a href="previousPage.action">戻る</a>
-            </div>
-        </section>
-    </c:param>
+			</form>
+
+			<!-- 戻るリンク -->
+			<div class="col-3">
+				<a href="SubjectListAction">戻る</a>
+			</div>
+
+		</section>
+	</c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

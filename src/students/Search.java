@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.ClassNum;
 import bean.Student;
@@ -25,7 +26,17 @@ public class Search extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		Page.header(out);
 		try {
-			String ent_year=request.getParameter("ent_year");
+
+
+			HttpSession session=request.getSession();
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
+			String ent_year=request.getParameter("year");
+
 			String class_no=request.getParameter("class");
 			String is_attend=request.getParameter("Zaigaku");
 			boolean isAttend = Boolean.parseBoolean(is_attend);

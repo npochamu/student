@@ -146,6 +146,7 @@ public class StudentsDAO extends DAO {
 	}
 
 
+
 	 // 学生番号が既に存在するかどうかを確認するメソッド
 	 public boolean isStudentNumberExists(String studentNo) throws Exception {
        Connection con = getConnection();
@@ -164,4 +165,5 @@ public class StudentsDAO extends DAO {
 
        return exists;
    }
+
 }

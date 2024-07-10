@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Student;
 import dao.StudentsDAO;
@@ -21,6 +22,15 @@ public class Insert extends HttpServlet {
         PrintWriter out = response.getWriter();
         Page.header(out);
         try {
+
+        	HttpSession session=request.getSession();
+
+			if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
+
             String student_no = request.getParameter("Num");
             String student_name = request.getParameter("name");
             String ent_year = request.getParameter("year");
@@ -33,29 +43,29 @@ public class Insert extends HttpServlet {
 
             // 必須項目のチェック
             if (ent_year == null || ent_year.isEmpty() || stu_seibetu == null || stu_seibetu.isEmpty()) {
-                request.setAttribute("errorMessage", "入学年度と性別は必須項目です。");
-                request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                request.setAttribute("errorMessage", "入学年度と性別は必須項目です");
+                request.getRequestDispatcher("/students/classall").forward(request, response);
                 return;
             }
 
             // 学生番号のチェック
             if (!Student_Nocheck(student_no)) {
-                request.setAttribute("errorMessage", "学生番号は7桁の数字のみ入力してください。");
-                request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                request.setAttribute("errorMessage", "学生番号は7桁の半角数字で入力してください");
+                request.getRequestDispatcher("/students/classall").forward(request, response);
                 return;
             }
 
             // フリガナのチェック
             if (!Katakana_check(student_kana)) {
-                request.setAttribute("errorMessage", "フリガナはカタカナのみ入力してください。");
-                request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                request.setAttribute("errorMessage", "フリガナはカタカナで入力してください");
+                request.getRequestDispatcher("/students/classall").forward(request, response);
                 return;
             }
 
             // 氏名のチェック
             if (!Student_Namecheck(student_name)) {
-                request.setAttribute("errorMessage", "氏名は漢字、ひらがな、カタカナ、英語のみ入力してください。");
-                request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                request.setAttribute("errorMessage", "氏名は漢字、ひらがな、カタカナ、英語で入力してください");
+                request.getRequestDispatcher("/students/classall").forward(request, response);
                 return;
             }
 
@@ -63,8 +73,8 @@ public class Insert extends HttpServlet {
 
             // 学生番号が既に存在するかをチェック
             if (dao.isStudentNumberExists(student_no)) {
-                request.setAttribute("errorMessage", "学生番号が既に登録されています。");
-                request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                request.setAttribute("errorMessage", "学生番号が既に登録されています");
+                request.getRequestDispatcher("/students/classall").forward(request, response);
             } else {
                 Student p = new Student();
                 p.setStudent_No(student_no);
@@ -79,15 +89,16 @@ public class Insert extends HttpServlet {
                 int line = dao.insert(p);
 
                 if (line > 0) {
+
                     request.getRequestDispatcher("/students/sturegiser_complete.jsp").forward(request, response);
                 } else {
-                    request.setAttribute("errorMessage", "登録に失敗しました。");
-                    request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+                    request.setAttribute("errorMessage", "登録に失敗しました");
+                    request.getRequestDispatcher("/students/classall").forward(request, response);
                 }
             }
         } catch (Exception e) {
-            request.setAttribute("errorMessage", "エラーが発生しました。");
-            request.getRequestDispatcher("/students/student_in.jsp").forward(request, response);
+            request.setAttribute("errorMessage", "エラーが発生しました");
+            request.getRequestDispatcher("/students/classall").forward(request, response);
         }
         Page.footer(out);
     }

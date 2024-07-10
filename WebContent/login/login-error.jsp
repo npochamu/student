@@ -7,7 +7,7 @@
 <%-- 文字化けの対策 --%>
 <% request.setCharacterEncoding("UTF-8"); %>
 
-<c:import url="/common/base.jsp">
+<c:import url="/common/base_login.jsp">
     <c:param name="title">
         <h1 class="toptitle">得点管理システム</h1>
 
@@ -19,8 +19,14 @@
         <section class="mo-4">
 
             <div class="my-2 text-end px-4">
-                <a>システムエラーだぜ！！</a>
+                <a>エラーだぜ！！</a>
+             <br>
+            <br>
+            <br>
+            <br>
+            <br>
             </div>
         </section>
     </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

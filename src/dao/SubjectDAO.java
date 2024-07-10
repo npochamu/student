@@ -36,7 +36,7 @@ import bean.Subject;
 public class SubjectDAO extends DAO {
 
 	//科目を削除
-	public void deleteSubject(Subject subjectBean) throws Exception {
+	public int deleteSubject(Subject subjectBean) throws Exception {
 //		public void deleteSubject(String subCd) throws Exception {
 		//科目を削除するSQL
 //		String sql = "delete  from subject where SUB_CD=?";
@@ -53,8 +53,8 @@ public class SubjectDAO extends DAO {
 			System.out.println(st.toString());
 
 			//SQL実行
-			st.executeUpdate();
-
+			int result = st.executeUpdate();
+			return result;
 		}
 	}
 
@@ -104,8 +104,8 @@ public class SubjectDAO extends DAO {
 			//取得した行数を繰り返す
 			while (rs.next()) {
 				//取得した値を科目Beanにセット
-				subjectBean.setSchoolCd("SCHOOL_CD");
-				subjectBean.setSubCd("sub_cd");
+				subjectBean.setSchoolCd(rs.getString("SCHOOL_CD"));
+				subjectBean.setSubCd(rs.getString("SUB_CD"));
 				subjectBean.setSubName(rs.getString("SUB_NAME"));
 			}
 		}
