@@ -40,7 +40,7 @@ public class Classall extends HttpServlet {
 
 			// ここまで
 
-			request.setAttribute("classall", list2);
+			session.setAttribute("classall", list2);
 			request.getRequestDispatcher("student_in.jsp")
 				.forward(request, response);
 

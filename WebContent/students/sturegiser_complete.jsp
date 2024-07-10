@@ -27,13 +27,15 @@
     <c:param name="content">
         <section class="mo-4">
         	<div style="background-color: #f0f0f0;">
-            <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">${insert}だみー１</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">${insert}</h2>
             </div>
             <div class="my-2 text-end px-4">
             	<div style="background-color: lightgreen; text-align: center;">
-                <p>${insert2}だみー２</p>
+                <p>${insert2}</p>
                 </div>
-                <a href="classall" style="margin-right: 15px;">戻る</a>
+				<c:if test="${insert == '学生情報登録' }">
+                	<a href="classall" style="margin-right: 15px;">戻る</a>
+                </c:if>
                 <a href="../students/all">学生一覧</a>
             </div>
         </section>

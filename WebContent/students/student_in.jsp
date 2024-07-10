@@ -43,15 +43,15 @@
                     </div>
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
-                        <input type="text" name="Num" placeholder="学生番号を入力してください" required class="form-control" value="${param.Num}">
+                        <input type="text" name="Num" placeholder="学生番号を入力してください" id="student-f1-select" required class="form-control" value="${param.Num}">
                     </div>
                     <div class="col-4">
-                        <label class="form-label" for="student-f1-select">氏名</label>
-                        <input type="text" name="name" placeholder="氏名を入力してください" required class="form-control" value="${param.name}">
+                        <label class="form-label" for="student-f1-name">氏名</label>
+                        <input type="text" name="name" placeholder="氏名を入力してください" id="student-f1-name" required class="form-control" value="${param.name}">
                     </div>
                     <div class="col-4">
-                        <label class="form-label" for="student-f2-select">性別</label>
-                        <select name="gender" class="form-control" required>
+                        <label class="form-label" for="student-f2-gender">性別</label>
+                        <select name="gender" class="form-control" id="student-f2-gender" required>
                         	<option value="">---</option>
                             <option value="男" <c:if test="${param.gender == '男'}">selected</c:if>>男</option>
                             <option value="女" <c:if test="${param.gender == '女'}">selected</c:if>>女</option>
@@ -59,12 +59,12 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <label class="form-label" for="student-f2-select">クラス</label>
+                        <label class="form-label" for="student-f2-class">クラス</label>
 
-                        <select name="class" class="form-control" required>
-			                <option value="">---</option>
+                        <select name="classno" class="form-control" id="student-f2-class" required>
+                        	<option value="">---</option>
                             <c:forEach var="list2"  items="${classall }" >
-								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
+								<option value="${list2.getClassNo() }" <c:if test="${param.classno == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
 							</c:forEach>
 			            </select>
 
@@ -72,16 +72,16 @@
                     </div>
 
                     <div class="col-4">
-                        <label class="form-label" for="student-f1-select">フリガナ</label>
-                        <input type="text" name="name_huri" placeholder="フリガナを入力してください" required class="form-control" value="${param.name_huri}">
+                        <label class="form-label" for="student-f1-huri">フリガナ</label>
+                        <input type="text" name="name_huri" placeholder="フリガナを入力してください" id="student-f1-huri" required class="form-control" value="${param.name_huri}">
                     </div>
                     <div class="col-4">
-                        <label class="form-label" for="student-f1-select">学校コード</label>
-                        <input type="text" name="sc_cd" value="111" readonly placeholder="学校コードを入力してください" required class="form-control">
+                        <label class="form-label" for="student-f1-selectcode">学校コード</label>
+                        <input type="text" name="sc_cd" value="111" id="student-f1-selectcode" readonly placeholder="学校コードを入力してください" required class="form-control">
                     </div>
                     <div class="col-2 form-check text-center">
                         <label class="form-check-label" for="student-f3-check">在学中
-                            <input type="checkbox" name="Zaigaku" value="1">
+                            <input type="checkbox" name="Zaigaku" value="1" id="student-f3-check">
                         </label>
                     </div>
 
