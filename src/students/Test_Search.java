@@ -23,18 +23,33 @@ public class Test_Search extends HttpServlet {
 		    PrintWriter out = response.getWriter();
 		    Page.header(out);
 		    try {
+		    	boolean hasErrors = false;
 		        String ent_year = request.getParameter("year");
 		        String class_no = request.getParameter("class");
 		        String subject_cd = request.getParameter("sub_cd");
 		        String test_no_str = request.getParameter("test_no");
 
-		        // 必須項目のチェック
-		        if (ent_year == null || ent_year.isEmpty() || class_no == null || class_no.isEmpty()
-		                || test_no_str == null || test_no_str.isEmpty()) {
-		            request.setAttribute("errorMessage", "入学年度、クラス、科目、回数は必須項目です。");
-		            request.getRequestDispatcher("/students/test_regist.jsp").forward(request, response);
-		            return;
-		        }
+		        if (ent_year == null || ent_year.isEmpty()) {
+	                request.setAttribute("yearError", "入学年度を選択してください。");
+	                hasErrors = true;
+	            }
+	            if (class_no == null || class_no.isEmpty()) {
+	                request.setAttribute("classError", "クラスを選択してください。");
+	                hasErrors = true;
+	            }
+	            if (subject_cd == null || subject_cd.isEmpty()) {
+	                request.setAttribute("sub_cdError", "科目を選択してください。");
+	                hasErrors = true;
+	            }
+	            if (test_no_str == null || test_no_str.isEmpty()) {
+	                request.setAttribute("test_noError", "回数を選択してください。");
+	                hasErrors = true;
+	            }
+
+	            if (hasErrors) {
+	                request.getRequestDispatcher("/students/test_insert").forward(request, response);
+	                return;
+	            }
 
 		        // test_noを整数に変換
 		        int test_no = Integer.parseInt(test_no_str);
@@ -53,12 +68,8 @@ public class Test_Search extends HttpServlet {
 
 		        // 検索結果をリクエスト属性に設定してJSPにフォワード
 		        request.setAttribute("students", list);
-		        request.getRequestDispatcher("/students/test_regist.jsp").forward(request, response);
+		        request.getRequestDispatcher("/students/test_insert").forward(request, response);
 
-		    } catch (NumberFormatException e) {
-		        // 数値変換エラーが発生した場合の処理
-		        request.setAttribute("errorMessage", "回数には数値を入力してください。");
-		        request.getRequestDispatcher("/students/test_regist.jsp").forward(request, response);
 		    } catch (Exception e) {
 		        // その他の例外が発生した場合の処理
 		        e.printStackTrace(out); // デバッグ用の出力
@@ -66,5 +77,5 @@ public class Test_Search extends HttpServlet {
 		        request.getRequestDispatcher("/students/test_regist.jsp").forward(request, response);
 		    }
 		    Page.footer(out);
-		}
-}
+
+}}

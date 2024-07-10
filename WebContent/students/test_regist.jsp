@@ -1,19 +1,6 @@
 <%-- 学生一覧JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-    <%
-    // セッションを取得
-    HttpSession sessions = request.getSession();
-
-    // "teacher"属性がnullかどうかを確認
-    if (sessions.getAttribute("teacher") == null) {
-        // "teacher"属性がnullの場合、ログインページにフォワード
-        request.getRequestDispatcher("/login/login.jsp").forward(request, response);
-        return; // フォワード後に処理を中断
-    }
-%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- 文字化けの対策 --%>
@@ -31,6 +18,11 @@
 <html>
 <head>
     <title>得点管理システム</title>
+
+    <style>
+		.error-border { border: 2px solid red; }
+	</style>
+
     <script type="text/javascript">
         function validateScores() {
             var scores = document.querySelectorAll("input[name='point']");
@@ -71,31 +63,42 @@
                     <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                         <div class="col-4">
                             <label class="form-label" for="student-f1-select">入学年度</label>
-                            <select name="year">
+                            <select name="year" id="year">
                                 <option value="">----</option>
                                 <%for (int year = 2014; year <= 2024; year++) {%>
                                 <option value="<%=year %>" ><%=year %></option>
                                 <% } %>
                             </select>
+                            <br><c:if test="${not empty yearError}">
+                				<span style="color:red;">${yearError}</span>
+            				</c:if>
                         </div>
 
                         <div class="col-4">
                             <label class="form-label" for="student-f2-select">クラス</label>
-                            <select name="class">
+                            <select name="class", id="class">
                                 <option value="">---</option>
                                 <option value="101">101</option>
                                 <option value="201">201</option>
                             </select>
+                            <br><c:if test="${not empty classError}">
+				                <span style="color:red;">${classError}</span>
+				            </c:if>
+
                         </div>
                         <div class="col-4">
                             <label class="form-label" for="student-f2-select">科目</label>
                             <select name="sub_cd" id="sub_cd">
                                 <option value="">---</option>
                                 <c:forEach var="test" items="${list}">
-                                    <option value=${test.getSubject_Cd()}> ${test.getSub_Name()}</option>
+                                    <option value=${test.getSubject_Cd()}> ${test.getSubName()}</option>
                                 </c:forEach>
                             </select>
+                            <br><c:if test="${not empty sub_cdError}">
+				                <span style="color:red;">${sub_cdError}</span>
+				            </c:if>
                         </div>
+
                         <div class="col-4">
                             <label class="form-label" for="student-f2-select">回数</label>
                             <select name="test_no" id="test_no">
@@ -103,6 +106,9 @@
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                             </select>
+                            <br><c:if test="${not empty test_noError}">
+				                <span style="color:red;">${test_noError}</span>
+				            </c:if>
                         </div>
                         <div class="col-2 text-center">
                             <div><input type="submit" value="検索"></div>
@@ -126,7 +132,7 @@
                                 <c:forEach var="test" items="${students}">
                                     <tr>
                                         <td>${test.getEnt_Year()}</td>
-                                        <td>${test.getClass_Num()}</td>
+                                        <td>${test.getClass_No()}</td>
                                         <td>${test.getStudent_No()}</td>
                                         <td>${test.getStudent_Name()}</td>
                                         <td><input type="number" id="point" name="point" value="<%--<%= testBean.getTestScore() %> --%>" class="form-input">

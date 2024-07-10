@@ -18,28 +18,25 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <c:import url="/common/base.jsp">
-    <c:param name="title">
-        <h1 class="toptitle">得点管理システム</h1>
-    </c:param>
 
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
         <section class="mo-4">
-            <h2 class="h3 mb-3 fw-normal bg-secondary bg-opacity-10 py-2 px-4">学情報登録</h2>
+            <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">学生情報登録</h2>
 
             <!-- エラーメッセージの表示 -->
             <c:if test="${not empty errorMessage}">
-                <p style="color:red;">${errorMessage}</p>
+                <p class="ml-3" style="color:red;">${errorMessage}</p>
             </c:if>
 
             <form action="insert" method="post">
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                     <div class="col-4">
-                        <label class="form-label" for="student-f1-select">入学年度</label>
-                        <select name="year" required>
+						<label class="form-label" for="entYear">入学年度</label>
+                        <select name="year" class="form-control"  id="entYear" required>
                         	<option value="">-------</option>
-                            <c:forEach var="year" begin="1900" end="2030">
+                            <c:forEach var="year" begin="2014" end="2025">
         						<option value="${year}" <c:if test="${param.year == year}">selected</c:if>>${year}</option>
     						</c:forEach>
                         </select>
@@ -55,7 +52,7 @@
                     </div>
                     <div class="col-4">
                         <label class="form-label" for="student-f2-select">性別</label>
-                        <select name="gender" required>
+                        <select name="gender" class="form-control" required>
                         	<option value="">---</option>
                             <option value="男" <c:if test="${param.gender == '男'}">selected</c:if>>男</option>
                             <option value="女" <c:if test="${param.gender == '女'}">selected</c:if>>女</option>
@@ -65,7 +62,7 @@
                     <div class="col-4">
                         <label class="form-label" for="student-f2-select">クラス</label>
 
-                        <select name="class">
+                        <select name="class" class="form-control" required>
 			                <option value="">---</option>
                             <c:forEach var="list2"  items="${classall }" >
 								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
@@ -88,10 +85,17 @@
                     </div>
 
                     <div>
-                        <input type="submit" value="登録して終了">
+                        <button type="submit" class="btn btn-secondary">登録して終了</button>
                     </div>
                 </div>
             </form>
+
+                        <!-- 戻るリンク -->
+<div class="m-3">
+<a href="../students/all">戻る</a>
+</div>
+
         </section>
     </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

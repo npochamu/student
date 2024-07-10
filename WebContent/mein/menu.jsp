@@ -20,17 +20,17 @@
 <div class="row">
     <div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #eaf6fd;">
-    <a href="../students/all">学生管理</a>
+    <a href="../students/all" class="h5" style="color:blue;">学生管理</a>
     </div>
     <div class="col d-flex  flex-column align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #c8e2e6;">
-    <p>成績管理</p>
-    <a href="../students/test_insert">成績登録</a>
-    <a href="../students/TestListAction">成績参照</a>
+    <p class="h5">成績管理</p>
+    <a href="..students/test_insert" class="h5" style="color:blue;">成績登録</a>
+    <a href="../students/TestListAction" class="h5" style="color:blue;">成績参照</a>
     </div>
     <div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #f2efbd;">
-    <a href="../students/SubjectListAction">科目管理</a>
+    <a href="../students/SubjectListAction" class="h5" style="color:blue;">科目管理</a>
 	</div>
 	</div>
 </div>
