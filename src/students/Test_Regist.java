@@ -30,7 +30,6 @@ public class Test_Regist extends HttpServlet {
 
 			try {
 
-
 				// リクエストから "point" パラメータを取得
 				String pointStr = request.getParameter("point");
 

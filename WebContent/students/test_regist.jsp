@@ -8,11 +8,6 @@
 
 <%@ page import="bean.Test, dao.TestDAO, java.util.List" %>
 
-<%-- <%
-// CourseDAOクラスを用いて、全コースの情報を取得。
-    SubjectDAO dao = new SubjectDAO();
-    List<Subject> list = dao.selectAll();
-%> --%>
 
 <!DOCTYPE html>
 <html>
@@ -63,7 +58,7 @@
                     <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                         <div class="col-4">
                             <label class="form-label" for="student-f1-select">入学年度</label>
-                            <select name="year" id="year">
+                            <select name="ent_year" id="ent_year">
                                 <option value="">----</option>
                                 <%for (int year = 2014; year <= 2024; year++) {%>
                                 <option value="<%=year %>" ><%=year %></option>
@@ -76,13 +71,13 @@
 
                         <div class="col-4">
                             <label class="form-label" for="student-f2-select">クラス</label>
-                            <select name="class", id="class">
+                            <select name="class_num", id="class_num">
                                 <option value="">---</option>
                                 <option value="101">101</option>
                                 <option value="201">201</option>
                             </select>
-                            <br><c:if test="${not empty classError}">
-				                <span style="color:red;">${classError}</span>
+                            <br><c:if test="${not empty class_numError}">
+				                <span style="color:red;">${class_numError}</span>
 				            </c:if>
 
                         </div>
@@ -91,7 +86,7 @@
                             <select name="sub_cd" id="sub_cd">
                                 <option value="">---</option>
                                 <c:forEach var="test" items="${list}">
-                                    <option value=${test.getSubject_Cd()}> ${test.getSubName()}</option>
+                                    <option value=${test.getSub_Cd()}> ${test.getSub_Name()}</option>
                                 </c:forEach>
                             </select>
                             <br><c:if test="${not empty sub_cdError}">
@@ -132,7 +127,7 @@
                                 <c:forEach var="test" items="${students}">
                                     <tr>
                                         <td>${test.getEnt_Year()}</td>
-                                        <td>${test.getClass_No()}</td>
+                                        <td>${test.getClass_Num()}</td>
                                         <td>${test.getStudent_No()}</td>
                                         <td>${test.getStudent_Name()}</td>
                                         <td><input type="number" id="point" name="point" value="<%--<%= testBean.getTestScore() %> --%>" class="form-input">

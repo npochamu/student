@@ -24,20 +24,20 @@ public class Test_Search extends HttpServlet {
 		    Page.header(out);
 		    try {
 		    	boolean hasErrors = false;
-		        String ent_year = request.getParameter("year");
-		        String class_no = request.getParameter("class");
-		        String subject_cd = request.getParameter("sub_cd");
+		        String ent_year = request.getParameter("ent_year");
+		        String class_num = request.getParameter("class_num");
+		        String sub_cd = request.getParameter("sub_cd");
 		        String test_no_str = request.getParameter("test_no");
 
 		        if (ent_year == null || ent_year.isEmpty()) {
 	                request.setAttribute("yearError", "入学年度を選択してください。");
 	                hasErrors = true;
 	            }
-	            if (class_no == null || class_no.isEmpty()) {
+	            if (class_num == null || class_num.isEmpty()) {
 	                request.setAttribute("classError", "クラスを選択してください。");
 	                hasErrors = true;
 	            }
-	            if (subject_cd == null || subject_cd.isEmpty()) {
+	            if (sub_cd == null || sub_cd.isEmpty()) {
 	                request.setAttribute("sub_cdError", "科目を選択してください。");
 	                hasErrors = true;
 	            }
@@ -57,8 +57,8 @@ public class Test_Search extends HttpServlet {
 		        // Testオブジェクトの作成
 		        Test p = new Test();
 		        p.setEnt_Year(ent_year);
-		        p.setClass_Num(class_no);
-		        p.setSubject_Cd(subject_cd);
+		        p.setClass_Num(class_num);
+		        p.setSubject_Cd(sub_cd);
 		        p.setTest_No(test_no);
 
 		        // DAOを使用して検索処理

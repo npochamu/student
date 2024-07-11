@@ -42,6 +42,7 @@ public class TestDAO extends DAO{
 		// ここまで
 	}
 
+
 	public List<Test> search2(Test keyword) throws Exception {
 		// ここから
 
@@ -59,7 +60,7 @@ public class TestDAO extends DAO{
 		while (rs.next()){
 		    Test p=new Test();
 		    p.setEnt_Year(rs.getString("ent_year"));
-		    p.setClass_Num(rs.getString("class_no"));
+		    p.setClass_Num(rs.getString("class_num"));
 		    p.setStudent_No(rs.getString("student_no"));
 		    p.setStudent_Name(rs.getString("student_name"));
 			p.setPoint(rs.getInt("point"));
