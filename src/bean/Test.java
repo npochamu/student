@@ -12,7 +12,7 @@ public class Test implements java.io.Serializable {
 	private String class_num;
 	private String ent_year;
 	private String subject_name;
-	private int sub_cd;
+
 	private String sub_name;
 
 
@@ -73,12 +73,7 @@ public class Test implements java.io.Serializable {
 	public void setSubject_Name(String subject_name) {
 		this.subject_name=subject_name;
 	}
-	public int getSub_Cd() {
-		return sub_cd;
-	}
-	public void setSub_Cd(int sub_cd) {
-		this.sub_cd=sub_cd;
-	}
+
 	public String getSub_Name() {
 		return sub_name;
 	}
