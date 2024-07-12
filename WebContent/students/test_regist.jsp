@@ -1,6 +1,7 @@
-<%-- 学生一覧JSP --%>
+<%-- 成績登録JSP --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
     <%
     // セッションを取得
@@ -14,111 +15,134 @@
     }
 %>
 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%-- 文字化けの対策 --%>
-<% request.setCharacterEncoding("UTF-8"); %>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
 
-<%-- <%@ page import="bean.Subject, dao.SubjectDAO, java.util.List" %> --%>
+<%@ page import="bean.Test, dao.TestDAO, java.util.List"%>
 
-<%-- <%
-// CourseDAOクラスを用いて、全コースの情報を取得。
-    SubjectDAO dao = new SubjectDAO();
-    List<Subject> list = dao.selectAll();
-%> --%>
+<style>
+.error-border {
+	border: 2px solid red;
+}
+</style>
 
 <c:import url="/common/base.jsp">
-    <c:param name="title">
-        <h1 class="toptitle">得点管理システム</h1>
-    </c:param>
 
-    <c:param name="scripts"></c:param>
+		<c:param name="scripts"></c:param>
 
-    <c:param name="content">
-        <section class="mo-4">
-            <h2 class="h3 mb-3 fw-norma bg-secondary bg-opacity-10 py-2 px-4">成績管理</h2>
-            <div class="my-2 text-end px-4">
-                <a href="student_in.jsp">新規登録</a>
-            </div>
-            <form action="search" method="post">
-                <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
-                    <div class="col-4">
-                        <label class="form-label" for="student-f1-select">入学年度</label>
-                        <select name="year">
-					    <option value="">----</option>
-						<%for (int year = 2014; year <= 2024; year++) {%>
-						<option value="<%=year %>" ><%=year %></option>
-						<%
-					        }
-					    %>
-						</select>
-                    </div>
+		<c:param name="content">
+			<section class="mo-4">
+				<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">成績管理</h2>
 
-                    <div class="col-4">
-                        <label class="form-label" for="student-f2-select">クラス</label>
-                        <select name="class">
-			                <option value="">---</option>
-			                <option value="101">101</option>
-			                <option value="201">201</option>
-                        </select>
-                    </div>
-                    <div class="col-4">
-                        <label class="form-label" for="student-f2-select">科目</label>
-                        <select name="sub_cd" id="sub_cd">
-                    <%-- <% for (Subject sub : list) { %>
-                        <option value="<%= sub.getSubCd() %>"><%= sub.getSubName()%></option>
-                    <% } %> --%>
-                </select>
-                    </div>
-                    <div class="col-4">
-                        <label class="form-label" for="student-f2-select">回数</label>
-                        <select name="class">
-			                <option value="">---</option>
-			                <option value="1">1</option>
-			                <option value="2">2</option>
-                        </select>
-                    </div>
-                    <div class="col-2 text-center">
-                        <div><input type="submit" value="検索">
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <c:choose>
-                <c:when test="${students.size()>0}">
-                    <div>検索結果:${students.size()}件</div>
-                    <table class="table table-hover">
-                        <tr>
-                            <th>入学年度</th>
-                            <th>クラス</th>
-                            <th>学生番号</th>
-                            <th>氏名</th>
-                            <th>点数</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <c:forEach var="student" items="${students}">
-                            <tr>
-                                <td>${student.getEnt_Year() }</td>
-                                <td>${student.getClass_No() }</td>
-                                <td>${student.getStudent_No() }</td>
-                                <td>${student.getStudent_Name() }</td>
-                                <td><input type="text" id="score" name="score" pattern="0|[1-9][0-9]{0,1}|100"
-					 value="<%-- <%=testBean.getTestScore()%> --%>" class="form-input" ></td>
+				<!-- エラーメッセージの表示 -->
+				<c:if test="${not empty errorMessage}">
+					<p style="color: red;">${errorMessage}</p>
+				</c:if>
 
+				<form action="test_search" method="post">
+					<div class="row border mx-3 mb-3 py-2 align-items-center rounded"
+						id="filter">
+						<div class="col-2">
+							<label class="form-label" for="ent_year">入学年度</label> <select
+								name="ent_year" id="ent_year" class="form-control">
+								<option value="">----</option>
+								<%
+									for (int year = 2014; year <= 2024; year++) {
+								%>
+								<option value="<%=year%>"><%=year%></option>
+								<%
+									}
+								%>
+							</select> <br>
+							<c:if test="${not empty yearError}">
+								<span style="color: red;">${yearError}</span>
+							</c:if>
+						</div>
 
+						<div class="col-2">
+							<label class="form-label" for="class_num">クラス</label> <select
+								name="class_num" , id="class_num" class="form-control">
+								<option value="">---</option>
+								<option value="101">101</option>
+								<option value="201">201</option>
+							</select> <br>
+							<c:if test="${not empty class_numError}">
+								<span style="color: red;">${class_numError}</span>
+							</c:if>
 
+						</div>
+						<div class="col-4">
+							<label class="form-label" for="sub_cd">科目</label> <select
+								name="sub_cd" id="sub_cd" class="form-control">
+								<option value="">---</option>
+								<c:forEach var="test" items="${list}">
+									<%--                                     <option value=${test.getSub_Cd()}> ${test.getSub_Name()}</option> --%>
+									<option value=${test.subject_Cd}>
+										${test.getSubject_Name()}</option>
+								</c:forEach>
+							</select> <br>
+							<c:if test="${not empty sub_cdError}">
+								<span style="color: red;">${sub_cdError}</span>
+							</c:if>
+						</div>
 
-                                <td><a href="student _update.jsp?Year=${student.getEnt_Year()}&Student_no=${student.getStudent_No()}&Student_name=${student.getStudent_Name()}&Student_kana=${student.getStudent_Kana()}&Class_No=${student.getClass_No()}&Gender=${student.getStu_Seibetu()}&Is_Attend=${student.getIs_Attend()}">登録</a></td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </c:when>
+						<div class="col-2">
+							<label class="form-label" for="test_no">回数</label> <select
+								name="test_no" id="test_no" class="form-control">
+								<option value="">---</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+							</select> <br>
+							<c:if test="${not empty test_noError}">
+								<span style="color: red;">${test_noError}</span>
+							</c:if>
+						</div>
+						<div class="col-2 text-center">
+							<button type="submit" class="btn btn-secondary">検索</button>
+						</div>
+					</div>
+				</form>
+				<c:choose>
+					<c:when test="${students.size() > 0}">
+						<div class="ml-3">科目：${students[0].subject_Name}（${param.test_no}回）
+							検索結果：${students.size()}件</div>
+						<form action="test_regist" method="post"
+							onsubmit="return validateScores();" class="ml-3">
+							<table class="table table-hover" style="width: 80%">
+								<tr>
+									<th style="width: 15%">入学年度</th>
+									<th style="width: 15%">クラス</th>
+									<th style="width: 20%">学生番号</th>
+									<th style="width: 30%">氏名</th>
+									<th style="width: 20%">点数</th>
+								</tr>
+								<c:forEach var="test" items="${students}" varStatus="status">
+									<tr>
+										<td>${test.getEnt_Year()}</td>
+										<td>${test.getClass_Num()}</td>
+										<td>${test.getStudent_No()}</td>
+										<td>${test.getStudent_Name()}</td>
+<!-- 										<td><input type="text" id="point" name="point" -->
+<%-- 															value="${test.getPoint()}" class="form-control" required></td> --%>
+											<td><input type="number" id="point" name="point${status.count}"
 
-                <c:otherwise>
-                    <div>学生情報が存在しませんでした</div>
-                </c:otherwise>
-            </c:choose>
-        </section>
-    </c:param>
-</c:import>
+															value="${test.getPoint()}" class="form-control" required></td>
+												</tr>
+												<input type="hidden" name="stucd${status.count}" value="${test.getStudent_No()}">
+												<input type="hidden" name="clsno${status.count}" value="${test.getClass_Num()}">
+											</c:forEach>
+							</table>
+							<button type="submit" class="btn btn-secondary"
+								id="filter-button">登録して終了</button>
+						</form>
+					</c:when>
+					<c:otherwise>
+						<div>学生情報が存在しませんでした</div>
+					</c:otherwise>
+				</c:choose>
+			</section>
+		</c:param>
+	</c:import>
+	<c:import url="/common/footer.jsp" />

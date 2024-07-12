@@ -34,15 +34,12 @@
             </div>
 
             <table class="table table-hover m-3" style="width: 80%">
-                <thead>
                     <tr>
-                      <th style="width: 20%">科目コード</th>
+                      	<th style="width: 20%">科目コード</th>
                         <th style="width: 40%">科目名</th>
                         <th style="width: 20%">
                         <th style="width: 20%">
                     </tr>
-                </thead>
-                <tbody>
 
      <!-- 		リクエストパラメーターに全角文字をセットしたくてURLEncoder.encode(,)を使うため、スクリプト式、スクリプトレットで対応 -->
 		<%ArrayList<Subject> subjectList = (ArrayList<Subject>) request.getAttribute("subjectList");%>
@@ -56,7 +53,6 @@
             </tr>
             <%}%>
 
-                </tbody>
             </table>
         </section>
     </c:param>

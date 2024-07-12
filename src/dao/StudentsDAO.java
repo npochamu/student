@@ -77,6 +77,7 @@ public class StudentsDAO extends DAO {
 		return list;
 		// ここまで
 	}
+
 	public int UpdateInsert(Student product) throws Exception {
 		// ここから
 		Connection con=getConnection();

@@ -90,7 +90,7 @@
             <c:choose>
                 <c:when test="${students.size()>0}">
                     <div class="ml-3">検索結果:${students.size()}件</div>
-                    <table class="table table-hover ml-3" style="width: 98%">
+                    <table class="table table-hover mx-3" style="width: 95%">
                         <tr>
                             <th>入学年度</th>
                             <th>学生番号</th>
@@ -101,7 +101,7 @@
                             <th>性別</th>
                             <th>在学中</th>
                             <th></th>
-                            <th></th>
+<!--                             <th></th> -->
                         </tr>
                         <c:forEach var="student" items="${students}">
                             <tr>
@@ -148,7 +148,7 @@
                 </c:when>
                 <c:when test="${all.size()>0}">
                 	<div class="ml-3">検索結果:${all.size()}件</div>
-                    <table class="table table-hover ml-3" style="width: 98%">
+                    <table class="table table-hover mx-3" style="width: 95%">
                         <tr>
                             <th>入学年度</th>
                             <th>学生番号</th>
@@ -159,7 +159,7 @@
                             <th>性別</th>
                             <th>在学中</th>
                             <th></th>
-                            <th></th>
+<!--                             <th></th> -->
                         </tr>
                         <c:forEach var="all" items="${all}">
                             <tr>
