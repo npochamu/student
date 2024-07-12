@@ -44,7 +44,8 @@ public class UpdateInsert extends HttpServlet {
 
 				String student_name=request.getParameter("name");
 
-				String ent_year = ""; // デフォルト値を設定
+				String ent_year = "0"; // デフォルト値を設定
+
 
 				ent_year = request.getParameter("ent_year");
 
@@ -83,8 +84,8 @@ public class UpdateInsert extends HttpServlet {
 
 				if (line>0) {
 
-					request.setAttribute("insert", "学生情報登録");
-					request.setAttribute("insert2", "登録が完了しました");
+					request.setAttribute("insert", "学生情報変更");
+					request.setAttribute("insert2", "変更が完了しました");
 					request.getRequestDispatcher("sturegiser_complete.jsp")
 						.forward(request, response);
 

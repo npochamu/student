@@ -27,6 +27,7 @@ public class Search extends HttpServlet {
 		Page.header(out);
 		try {
 
+
 			HttpSession session=request.getSession();
 
 			if (session.getAttribute("teacher") == null) {
@@ -35,7 +36,7 @@ public class Search extends HttpServlet {
 			}
 
 			String ent_year=request.getParameter("year");
-			String class_no=request.getParameter("class");
+			String class_no=request.getParameter("classno");
 			String is_attend=request.getParameter("Zaigaku");
 			boolean isAttend = Boolean.parseBoolean(is_attend);
 

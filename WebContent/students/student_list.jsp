@@ -35,25 +35,25 @@
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                     <div class="col-3">
                         <label class="form-label" for="student-f1-select">入学年度</label>
-                        <select name="year" class="form-control" required>
+                        <select name="year" class="form-control"id="student-f1-select" required>
                         <option value="">----</option>
-							<%for (int year = 2014; year <= 2025; year++) {%>
-							<option value="<%=year %>" ><%=year %></option>
-							<%}%>
+							<c:forEach var="year" begin="2014" end="2025">
+        						<option value="${year}" <c:if test="${param.year == year}">selected</c:if>>${year}</option>
+    						</c:forEach>
                         </select>
                     </div>
                     <div class="col-3">
                         <label class="form-label" for="student-f2-select">クラス</label>
-                        <select name="class" class="form-control" required>
+                        <select name="classno" class="form-control" id="student-f2-select" required>
 			                <option value="">---</option>
 			                <c:forEach var="list2"  items="${classall }" >
-								<option value="${list2.getClassNo() }">${list2.getClassNo() }</option>
+								<option value="${list2.getClassNo() }" <c:if test="${param.classno == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
 							</c:forEach>
                         </select>
                     </div>
                     <div class="col-2 form-check text-center">
                         <label class="form-check-label" for="student-f3-check">在学中
-                            <input type="checkbox" name="Zaigaku" value="True" >
+                            <input type="checkbox" name="Zaigaku" value="true"id="student-f3-check" <c:if test="${param.Zaigaku}">checked</c:if>>
                         </label>
                     </div>
                     <div class="col-2 text-center">
@@ -185,3 +185,6 @@
     </c:param>
 </c:import>
 <c:import url="/common/footer.jsp"/>
+
+
+
