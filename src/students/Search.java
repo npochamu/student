@@ -78,7 +78,7 @@ public class Search extends HttpServlet {
 				request.setAttribute("students", list);
 
 			}else if(ent_year != "" || class_no != "" || is_attend == "true"){
-				System.out.println("サメ2");
+				System.out.println("サメ");
 
 				List<Student> list=dao.search(ent_year, class_no, isAttend);
 				request.setAttribute("students", list);

@@ -67,16 +67,16 @@
     						<c:if test="${!zaigakufalse}">
     							<c:choose>
 		    						<c:when test="${student.is_Attend}">
-		    							<c:set var="zai" value="true"/>
+		    							<c:set var="za" value="true"/>
 		    						</c:when>
 		    						<c:when test="${!student.is_Attend}">
-		    							<c:set var="zai" value="false"/>
+		    							<c:set var="za" value="false"/>
 		    							<c:set var="zaigakufalse" value="true"/>
 		    						</c:when>
 	    						</c:choose>
 							</c:if>
 						</c:forEach>
-						<input type="hidden" name="zaigaku2" value="${zai}">
+						<input type="hidden" name="zaigaku2" value="${za}">
 						<c:if test="${all.size()>0 }">
 							<input type="hidden" name="year2" value="">
    							<input type="hidden" name="classsno2" value="">

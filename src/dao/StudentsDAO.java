@@ -55,7 +55,7 @@ public class StudentsDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"select * from student order by ENT_YEAR desc, is_attend desc");
+				"select * from student order by ENT_YEAR desc");
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
