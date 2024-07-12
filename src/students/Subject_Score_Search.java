@@ -36,9 +36,12 @@ public class Subject_Score_Search extends HttpServlet {
 
 			String student_no = request.getParameter("student_no");
 
+			//			フォワード先で表示切替に使用
+			request.setAttribute("isFromTestStudent", true );
+
             // 学生番号のチェック
             if (!Student_Nocheck(student_no)) {
-                request.setAttribute("errorMessage", "学生番号は7桁の数字のみ入力してください。");
+                request.setAttribute("errorMessage", "学生番号は7桁の半角数字で入力してください");
                 request.getRequestDispatcher("TestListAction").forward(request, response);
                 return;
             }
@@ -49,6 +52,15 @@ public class Subject_Score_Search extends HttpServlet {
 			TestDAO dao = new TestDAO();
 			List<Test> list = dao.searchin(p);
 
+            // 学生の存在チェック
+            if (list.size()==0) {
+            	Test stu = dao.getTestBean(student_no);
+            	request.setAttribute("studentName", stu.getStudent_Name());
+            	System.out.println(stu.getStudent_Name());
+            	if (stu.getStudent_Name()==null) {
+            		request.setAttribute("stuMessage", "学生番号に該当する学生がいません");
+	            	}
+            }
 			// ここまで
 
 			request.setAttribute("test", list);

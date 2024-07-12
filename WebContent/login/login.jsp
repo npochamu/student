@@ -38,6 +38,9 @@
         </div>
     </c:param>
 </c:import>
+<br>
+<br>
+<br>
 <c:import url="/common/footer.jsp"/>
 
 <script type="text/javascript">

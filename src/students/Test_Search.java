@@ -34,7 +34,7 @@ public class Test_Search extends HttpServlet {
 	                hasErrors = true;
 	            }
 	            if (class_num == null || class_num.isEmpty()) {
-	                request.setAttribute("classError", "クラスを選択してください。");
+	                request.setAttribute("class_numError", "クラスを選択してください。");
 	                hasErrors = true;
 	            }
 	            if (sub_cd == null || sub_cd.isEmpty()) {

@@ -20,7 +20,13 @@
 
             <div class="my-2 text-end px-4">
                 <a>エラーだぜ！！</a>
+             <br>
+            <br>
+            <br>
+            <br>
+            <br>
             </div>
         </section>
     </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>

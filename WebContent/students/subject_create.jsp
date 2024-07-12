@@ -45,11 +45,11 @@
 
 <!-- 科目コード重複のメッセージ （insert実行前にselect～where文バージョンでのチェック）-->
 				<c:if test="${not empty insertErrorMsg}">
-					<p style="color: red;">${insertErrorMsg}</p>
+					<p class="ml-3" style="color: red;">${insertErrorMsg}</p>
 		 		</c:if>
 <!-- 科目コード重複のメッセージ （insert文実行時の例外キャッチによるチェック）-->
 				<c:if test="${not empty duplicateMsg}">
-					<p style="color: red;">${duplicateMsg}</p>
+					<p class="ml-3" style="color: red;">${duplicateMsg}</p>
 		 		</c:if>
 
 

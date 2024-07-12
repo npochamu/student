@@ -50,20 +50,33 @@ public class TestDAO extends DAO{
 
 		Connection con=getConnection();
 
+		System.out.println(keyword.getEnt_Year() + keyword.getClass_Num() + keyword.getSubject_Cd() + keyword.getTest_No());
+
 		PreparedStatement st=con.prepareStatement(
-				"select * from test join student on test.class_no = student.class_no where ENT_YEAR = ? AND test.class_no = ? AND subject_cd = ? AND test_no = ?");
-		st.setString(1,  keyword.getEnt_Year());
-		st.setString(2,  keyword.getClass_Num());
+				"select s.is_attend, sub.sub_cd as subject_cd, sub.sub_name, s.school_cd, "
+				+ "s.ent_year, s.class_no, s.student_no, s.student_name, t.test_no, t.point from student as s "
+				+ "left join test as t on s.student_no = t.student_no and t.subject_cd = ? and t.test_no = ? "
+				+ "left join subject sub on sub.sub_cd = ? "
+				+ "where s.ent_year = ? and s.class_no = ? and s.school_cd = ? "
+				+ "order by s.student_no");
+		st.setString(1, keyword.getSubject_Cd());
+		st.setInt(2, keyword.getTest_No());
 		st.setString(3, keyword.getSubject_Cd());
-		st.setInt(4, keyword.getTest_No());
+		st.setString(4,  keyword.getEnt_Year());
+		st.setString(5,  keyword.getClass_Num());
+		st.setString(6, "111");
+		System.out.println("最初"+st);
 		ResultSet rs=st.executeQuery();
+//		SQL表示
+		System.out.println(st);
 		while (rs.next()){
 		    Test p=new Test();
 		    p.setEnt_Year(rs.getString("ent_year"));
-		    p.setClass_Num(rs.getString("class_num"));
+		    p.setClass_Num(rs.getString("class_no"));
 		    p.setStudent_No(rs.getString("student_no"));
 		    p.setStudent_Name(rs.getString("student_name"));
 			p.setPoint(rs.getInt("point"));
+			p.setSubject_Name(rs.getString("sub_name"));
 			list.add(p);
 
 
@@ -76,7 +89,6 @@ public class TestDAO extends DAO{
 		return list;
 		// ここまで
 	}
-
 
 	public int Insert2(Test p) throws Exception {
 	    	Connection con = getConnection();
@@ -123,7 +135,8 @@ public class TestDAO extends DAO{
 		String sql = "SELECT student_no, student_name FROM STUDENT where student_no=? ";
 
 		//SQL実行の準備
-		try (Connection con = getConnection();
+		try (Connection con =
+				getConnection();
 				PreparedStatement st = con.prepareStatement(sql);) {
 			//パラメータをSQLにセット
 			st.setString(1, stuNo);

@@ -33,17 +33,18 @@
 	<div class="col-2 sidebar">
 	</div>
 	<div class="col-10">
-		<div class=" mx-4 mb-4 py-1 align-items-center">
+		<div class=" mx-3 mb-4 align-items-center">
 			<c:choose>
 				<c:when test="${not empty testList}">
 
-					<p>
+					<p class="m-0">科目：${testList[0].subName}
+						<span class="d-block text-right">
 						並び替え: <a
-							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=studentNo">学生番号順</a>
+							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=studentNo" class="mx-1">学生番号順</a>
 						<a
 							href="TestListSubjectAction?entYear=${param.entYear}&classNo=${param.classNo}&subcd=${param.subcd}&sort=kana">フリガナ順</a>
-					</p>
-					<p>科目：${testList[0].subName}</p>
+					</span></p>
+
 
 					<table class="table table-hover">
 						<%--     <caption>科目：${testList[0].subName}</caption> --%>

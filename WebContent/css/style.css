@@ -76,3 +76,10 @@ footer {
 	align-items: center;
 	justify-content: center;
 }
+
+/* ページ全体のフォントを指定.zen-maru-gothic-regular */
+body {
+  font-family: "Zen Maru Gothic", serif;
+  font-weight: 400;
+  font-style: normal;
+}

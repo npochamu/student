@@ -86,7 +86,7 @@
                             <select name="sub_cd" id="sub_cd">
                                 <option value="">---</option>
                                 <c:forEach var="test" items="${list}">
-                                    <option value=${test.getSub_Cd()}> ${test.getSub_Name()}</option>
+                                    <option value=${test.getSubject_Cd()}> ${test.getSub_Name()}</option>
                                 </c:forEach>
                             </select>
                             <br><c:if test="${not empty sub_cdError}">

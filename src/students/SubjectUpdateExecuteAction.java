@@ -58,7 +58,7 @@ public class SubjectUpdateExecuteAction extends HttpServlet {
 			if (result == 1) {
 				encodedViewMsg = URLEncoder.encode("変更が完了しました", StandardCharsets.UTF_8.toString());
 			} else {
-				encodedViewMsg = URLEncoder.encode("変更できません", StandardCharsets.UTF_8.toString());
+				encodedViewMsg = URLEncoder.encode("削除済等の理由で変更できません", StandardCharsets.UTF_8.toString());
 			}
 			//完了ページにリダイレクト
 			String encodedView = URLEncoder.encode("変更", StandardCharsets.UTF_8.toString());

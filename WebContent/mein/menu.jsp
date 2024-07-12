@@ -25,7 +25,7 @@
     <div class="col d-flex  flex-column align-items-center justify-content-center mx-2 rounded shadow"
     	style="height: 10rem;background-color: #c8e2e6;">
     <p class="h5">成績管理</p>
-    <a href="..students/test_insert" class="h5" style="color:blue;">成績登録</a>
+    <a href="../students/test_insert" class="h5" style="color:blue;">成績登録</a>
     <a href="../students/TestListAction" class="h5" style="color:blue;">成績参照</a>
     </div>
     <div class="col d-flex align-items-center justify-content-center mx-2 rounded shadow"

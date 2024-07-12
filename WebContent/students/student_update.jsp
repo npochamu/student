@@ -20,15 +20,12 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <c:import url="/common/base.jsp">
-<c:param name="title">
-<h1 class="toptitle">得点管理システム</h1>
-</c:param>
 
     <c:param name="scripts"></c:param>
 
     <c:param name="content">
 <section class="mo-4">
-<h2>学生情報変更</h2>
+<h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">学生情報変更</h2>
 <form action ="updateinsert" method="post">
 <div class="d-flex flex-column border mx-3 mb-3 py-2 px-4 align-items-start rounded" id="filter">
 <div class="mb-3">
@@ -53,7 +50,7 @@
 <label class="form-label" for="classnum">クラス</label>
 <%String Class_No=request.getParameter("Class_No"); %>
 <%request.setAttribute("Class_No", Class_No); %>
-<select id="classnum" name="classnum" class="form-select">
+<select id="classnum" name="classnum" class="form-control">
 <option value="101" <c:if test="${Class_No == 101}">selected</c:if>>101</option>
 <option value="201" <c:if test="${Class_No == 201}">selected</c:if>>201</option>
 </select>
@@ -62,7 +59,7 @@
 <label class="form-label" for="gender">性別</label>
 <%String Gender=request.getParameter("Gender"); %>
 <%request.setAttribute("Gender", Gender); %>
-<select id="gender" name="gender" class="form-select">
+<select id="gender" name="gender" class="form-control">
 
 <option value="男" <c:if test="${Gender == '男'}">selected</c:if>>男</option>
 <option value="女" <c:if test="${Gender == '女'}">selected</c:if>>女</option>
@@ -82,9 +79,10 @@
 </form>
 
             <!-- 戻るリンク -->
-<div>
-<a href="student_list.jsp">戻る</a>
+<div class="m-3">
+<a href="../students/all">戻る</a>
 </div>
 </section>
 </c:param>
 </c:import>
+<c:import url="/common/footer.jsp"/>
