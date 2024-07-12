@@ -118,7 +118,7 @@
 			</form>
 		</div>
 
-		<div class="col">
+		<div class="col ml-4">
 			<c:if
 				test="${empty param.isFromTestSubject and empty test.size() and empty errorMessage}">
 				<p style="color: blue;">科目情報を選択または学生情報を入力して検索ボタンをクリックしてください</p>
