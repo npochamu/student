@@ -28,7 +28,7 @@ public class TestDAO extends DAO{
 			p.setStudent_No(rs.getString("student_no"));
 			p.setTest_No(rs.getInt("test_no"));
 			p.setPoint(rs.getInt("point"));
-			p.setSub_Name(rs.getString("sub_name"));
+			p.setSubject_Name(rs.getString("sub_name"));
 			p.setStudent_Name(rs.getString("student_name"));
 			list.add(p);
 
@@ -41,6 +41,7 @@ public class TestDAO extends DAO{
 		return list;
 		// ここまで
 	}
+
 
 	public List<Test> search2(Test keyword) throws Exception {
 		// ここから
@@ -146,10 +147,6 @@ public class TestDAO extends DAO{
 		// ここまで
 	}
 
-
-
-
-
 	//学生番号から学生情報を取得
 	public Test getTestBean(String stuNo) throws Exception {
 		//試験情報を初期化
@@ -158,7 +155,8 @@ public class TestDAO extends DAO{
 		String sql = "SELECT student_no, student_name FROM STUDENT where student_no=? ";
 
 		//SQL実行の準備
-		try (Connection con = getConnection();
+		try (Connection con =
+				getConnection();
 				PreparedStatement st = con.prepareStatement(sql);) {
 			//パラメータをSQLにセット
 			st.setString(1, stuNo);

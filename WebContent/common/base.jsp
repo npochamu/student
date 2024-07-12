@@ -60,7 +60,6 @@
 	<!-- <div class="wrapper"> -->
 	<div class="container-fluid content">
 		<div class="row">
-			<div class="col-2 p-0 sidebar">
 <!-- 				<div class="sidebar_content"></div> -->
 				<div class="sidebar_fixed">
 <!-- 					固定するコンテンツ -->
@@ -71,7 +70,6 @@
 						<li><a href="../students/test_insert">成績登録</a></li>
 						<li><a href="../students/TestListAction">成績参照</a></li>
 						<li><a href="../students/SubjectListAction">科目管理</a></li>
-
 					</ul>
 				</div>
 			</div>

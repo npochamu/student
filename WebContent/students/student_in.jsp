@@ -41,6 +41,7 @@
     						</c:forEach>
                         </select>
                     </div>
+
                     <div class="col-4">
                         <label class="form-label" for="student-f1-select">学生番号</label>
                         <input type="text" name="Num" placeholder="学生番号を入力してください" id="student-f1-select" required class="form-control" value="${param.Num}">
@@ -67,8 +68,6 @@
 								<option value="${list2.getClassNo() }" <c:if test="${param.classno == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
 							</c:forEach>
 			            </select>
-
-
                     </div>
 
                     <div class="col-4">
