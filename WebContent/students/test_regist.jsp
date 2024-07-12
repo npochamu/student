@@ -48,13 +48,10 @@
 							<label class="form-label" for="ent_year">入学年度</label> <select
 								name="ent_year" id="ent_year" class="form-control">
 								<option value="">----</option>
-								<%
-									for (int year = 2014; year <= 2024; year++) {
-								%>
-								<option value="<%=year%>"><%=year%></option>
-								<%
-									}
-								%>
+								<c:forEach begin="2014" end="2025" var="year">
+									<option value="${year}"
+									<c:if test="${year == param.ent_year}">selected</c:if>>${year}</option>
+								</c:forEach>
 							</select> <br>
 							<c:if test="${not empty yearError}">
 								<span style="color: red;">${yearError}</span>
@@ -64,6 +61,7 @@
 						<div class="col-2">
 							<label class="form-label" for="class_num">クラス</label> <select
 								name="class_num" , id="class_num" class="form-control">
+								<!-- ★ここにもif~selected入れる -->
 								<option value="">---</option>
 								<option value="101">101</option>
 								<option value="201">201</option>
@@ -79,6 +77,7 @@
 								<option value="">---</option>
 								<c:forEach var="test" items="${list}">
 									<%--                                     <option value=${test.getSub_Cd()}> ${test.getSub_Name()}</option> --%>
+								<!-- ★ここにもif~selected入れる -->
 									<option value=${test.subject_Cd}>
 										${test.getSubject_Name()}</option>
 								</c:forEach>
@@ -92,8 +91,8 @@
 							<label class="form-label" for="test_no">回数</label> <select
 								name="test_no" id="test_no" class="form-control">
 								<option value="">---</option>
-								<option value="1">1</option>
-								<option value="2">2</option>
+								<option value="1"<c:if test="${param.test_no=='1'}">selected</c:if>>1</option>
+								<option value="2"<c:if test="${param.test_no=='2'}">selected</c:if>>2</option>
 							</select> <br>
 							<c:if test="${not empty test_noError}">
 								<span style="color: red;">${test_noError}</span>
@@ -126,9 +125,9 @@
 										<td>${test.getStudent_Name()}</td>
 <!-- 										<td><input type="text" id="point" name="point" -->
 <%-- 															value="${test.getPoint()}" class="form-control" required></td> --%>
-											<td><input type="number" id="point" name="point${status.count}"
+											<td><input type="text" id="point" name="point${status.count}"
 
-															value="${test.getPoint()}" class="form-control" required></td>
+															value="${test.getPoint()}" class="form-control"  pattern="^(100|[1-9]?[0-9])$" title="0～100の範囲で入力してください" required></td>
 												</tr>
 												<input type="hidden" name="stucd${status.count}" value="${test.getStudent_No()}">
 												<input type="hidden" name="clsno${status.count}" value="${test.getClass_Num()}">
@@ -138,11 +137,9 @@
 								id="filter-button">登録して終了</button>
 						</form>
 					</c:when>
-					<c:otherwise>
-						<div>学生情報が存在しませんでした</div>
-					</c:otherwise>
 				</c:choose>
 			</section>
 		</c:param>
 	</c:import>
 	<c:import url="/common/footer.jsp" />
+
