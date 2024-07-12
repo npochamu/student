@@ -10,47 +10,14 @@ import bean.Student;
 
 public class StudentsDAO extends DAO {
 
+	private String baseSql = "select * from student where ";
+
 	/**
 	 * Product表からキーワードを検索し、該当する商品のListを返却する。
 	 * @param keyword
 	 * @return list<Product>
 	 * @throws Exception
 	 */
-	public List<Student> search(Student keyword) throws Exception {
-		// ここから
-
-		List<Student> list=new ArrayList<>();
-
-		Connection con=getConnection();
-
-		PreparedStatement st=con.prepareStatement(
-				"select * from student where ENT_YEAR = ? AND class_no = ? AND is_attend = ?");
-		st.setString(1,  keyword.getEnt_Year());
-		st.setString(2,  keyword.getClass_No());
-		st.setBoolean(3, keyword.getIs_Attend());
-		ResultSet rs=st.executeQuery();
-		while (rs.next()){
-			Student p=new Student();
-			p.setStudent_No(rs.getString("student_no"));
-			p.setStudent_Kana(rs.getString("student_kana"));
-			p.setStudent_Name(rs.getString("student_name"));
-			p.setEnt_Year(rs.getString("ent_year"));
-			p.setClass_No(rs.getString("class_no"));
-			p.setStudent_No(rs.getString("student_no"));
-			p.setIs_Attend(rs.getBoolean("is_attend"));
-			p.setStu_Seibetu(rs.getString("stu_seibetu"));
-			p.setSchool_Cd(rs.getString("school_cd"));
-			list.add(p);
-
-
-		}
-
-		st.close();
-		con.close();
-
-		return list;
-		// ここまで
-	}
 
 	/**
 	 * Product表へデータを挿入する。
@@ -88,7 +55,7 @@ public class StudentsDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"select * from student ");
+				"select * from student order by ENT_YEAR desc, is_attend desc");
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
@@ -165,5 +132,119 @@ public class StudentsDAO extends DAO {
 
        return exists;
    }
+
+	 public List<Student> search(String ent_year, String class_no, boolean isAttend) throws Exception {
+			// ここから
+			List<Student> list=new ArrayList<>();
+
+			String condition = "ENT_YEAR = ? AND class_no = ?";
+			String order = " order by ENT_YEAR desc";
+			String conditionis = "";
+
+			if(isAttend){
+				conditionis = "AND is_attend = true";
+			}
+
+			Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement(
+					baseSql + condition + conditionis + order);
+			st.setString(1,  ent_year);
+			st.setString(2,  class_no);
+			ResultSet rs=st.executeQuery();
+			while (rs.next()){
+				Student p=new Student();
+				p.setStudent_No(rs.getString("student_no"));
+				p.setStudent_Kana(rs.getString("student_kana"));
+				p.setStudent_Name(rs.getString("student_name"));
+				p.setEnt_Year(rs.getString("ent_year"));
+				p.setClass_No(rs.getString("class_no"));
+				p.setStudent_No(rs.getString("student_no"));
+				p.setIs_Attend(rs.getBoolean("is_attend"));
+				p.setStu_Seibetu(rs.getString("stu_seibetu"));
+				p.setSchool_Cd(rs.getString("school_cd"));
+				list.add(p);
+
+
+			}
+
+			st.close();
+			con.close();
+			return list;
+			// ここまで
+		}
+	 public List<Student> search(String ent_year, boolean isAttend) throws Exception {
+			// ここから
+			List<Student> list=new ArrayList<>();
+
+			String condition = "ENT_YEAR = ?";
+			String order = " order by ENT_YEAR desc";
+			String conditionis = "";
+
+			if(isAttend){
+				conditionis = "AND is_attend = true";
+			}
+
+			Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement(
+					baseSql + condition + conditionis + order);
+			st.setString(1, ent_year);
+			ResultSet rs=st.executeQuery();
+			while (rs.next()){
+				Student p=new Student();
+				p.setStudent_No(rs.getString("student_no"));
+				p.setStudent_Kana(rs.getString("student_kana"));
+				p.setStudent_Name(rs.getString("student_name"));
+				p.setEnt_Year(rs.getString("ent_year"));
+				p.setClass_No(rs.getString("class_no"));
+				p.setStudent_No(rs.getString("student_no"));
+				p.setIs_Attend(rs.getBoolean("is_attend"));
+				p.setStu_Seibetu(rs.getString("stu_seibetu"));
+				p.setSchool_Cd(rs.getString("school_cd"));
+				list.add(p);
+
+
+			}
+
+			st.close();
+			con.close();
+			return list;
+			// ここまで
+		}
+	 public List<Student> search(boolean isAttend) throws Exception {
+			// ここから
+			List<Student> list=new ArrayList<>();
+
+			String conditionis = "";
+			String order = " order by ENT_YEAR desc";
+
+			if(isAttend){
+				conditionis = "is_attend = true";
+			}
+
+			Connection con=getConnection();
+			PreparedStatement st=con.prepareStatement(
+					baseSql + conditionis + order);
+			ResultSet rs=st.executeQuery();
+			while (rs.next()){
+				Student p=new Student();
+				p.setStudent_No(rs.getString("student_no"));
+				p.setStudent_Kana(rs.getString("student_kana"));
+				p.setStudent_Name(rs.getString("student_name"));
+				p.setEnt_Year(rs.getString("ent_year"));
+				p.setClass_No(rs.getString("class_no"));
+				p.setStudent_No(rs.getString("student_no"));
+				p.setIs_Attend(rs.getBoolean("is_attend"));
+				p.setStu_Seibetu(rs.getString("stu_seibetu"));
+				p.setSchool_Cd(rs.getString("school_cd"));
+				list.add(p);
+
+
+			}
+
+			st.close();
+			con.close();
+			return list;
+			// ここまで
+		}
 
 }

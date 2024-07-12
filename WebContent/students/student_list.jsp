@@ -29,13 +29,16 @@
             <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">学生管理</h2>
             <div class="my-2 text-end px-4">
                 <a href="classall">新規登録</a>
+            <c:if test="${not empty errorMessage}">
+                <p class="ml-3" style="color:red;">${errorMessage}</p>
+            </c:if>
             </div>
             <form action="search" method="post">
 
                 <div class="row border mx-3 mb-3 py-2 align-items-center rounded" id="filter">
                     <div class="col-3">
                         <label class="form-label" for="student-f1-select">入学年度</label>
-                        <select name="year" class="form-control"id="student-f1-select" required>
+                        <select name="year" class="form-control"id="student-f1-select">
                         <option value="">----</option>
 							<c:forEach var="year" begin="2014" end="2025">
         						<option value="${year}" <c:if test="${param.year == year}">selected</c:if>>${year}</option>
@@ -44,7 +47,7 @@
                     </div>
                     <div class="col-3">
                         <label class="form-label" for="student-f2-select">クラス</label>
-                        <select name="classno" class="form-control" id="student-f2-select" required>
+                        <select name="classno" class="form-control" id="student-f2-select">
 			                <option value="">---</option>
 			                <c:forEach var="list2"  items="${classall }" >
 								<option value="${list2.getClassNo() }" <c:if test="${param.classno == list2.getClassNo()}">selected</c:if>>${list2.getClassNo() }</option>
@@ -56,6 +59,29 @@
                             <input type="checkbox" name="Zaigaku" value="true"id="student-f3-check" <c:if test="${param.Zaigaku}">checked</c:if>>
                         </label>
                     </div>
+						<c:set var="zaigakufalse" value="false"/>
+	                    <c:forEach var="student" items="${students}">
+    						<input type="hidden" name="year2" value="${student.ent_Year}">
+    						<input type="hidden" name="classsno2" value="${student.class_No}">
+
+    						<c:if test="${!zaigakufalse}">
+    							<c:choose>
+		    						<c:when test="${student.is_Attend}">
+		    							<c:set var="zai" value="true"/>
+		    						</c:when>
+		    						<c:when test="${!student.is_Attend}">
+		    							<c:set var="zai" value="false"/>
+		    							<c:set var="zaigakufalse" value="true"/>
+		    						</c:when>
+	    						</c:choose>
+							</c:if>
+						</c:forEach>
+						<input type="hidden" name="zaigaku2" value="${zai}">
+						<c:if test="${all.size()>0 }">
+							<input type="hidden" name="year2" value="">
+   							<input type="hidden" name="classsno2" value="">
+   							<input type="hidden" name="zaigaku2" value="false">
+						</c:if>
                     <div class="col-2 text-center">
                         <button class="btn btn-secondary" id="filter-button" >絞込み</button>
                     </div>
@@ -185,6 +211,4 @@
     </c:param>
 </c:import>
 <c:import url="/common/footer.jsp"/>
-
-
 
