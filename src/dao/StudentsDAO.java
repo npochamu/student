@@ -55,7 +55,7 @@ public class StudentsDAO extends DAO {
 		Connection con=getConnection();
 
 		PreparedStatement st=con.prepareStatement(
-				"select * from student order by ENT_YEAR desc");
+				"select * from student order by ENT_YEAR desc, is_attend desc");
 		ResultSet rs=st.executeQuery();
 
 		while (rs.next()){
@@ -141,14 +141,16 @@ public class StudentsDAO extends DAO {
 			String condition = "ENT_YEAR = ? AND class_no = ?";
 			String order = " order by ENT_YEAR desc";
 			String conditionis = "";
+			String ordee2 =", is_attend desc";
 
 			if(isAttend){
 				conditionis = "AND is_attend = true";
+				ordee2 = "";
 			}
 
 			Connection con=getConnection();
 			PreparedStatement st=con.prepareStatement(
-					baseSql + condition + conditionis + order);
+					baseSql + condition + conditionis + order + ordee2);
 			st.setString(1,  ent_year);
 			st.setString(2,  class_no);
 			ResultSet rs=st.executeQuery();
@@ -180,14 +182,16 @@ public class StudentsDAO extends DAO {
 			String condition = "ENT_YEAR = ?";
 			String order = " order by ENT_YEAR desc";
 			String conditionis = "";
+			String ordee2 =", is_attend desc";
 
 			if(isAttend){
 				conditionis = "AND is_attend = true";
+				ordee2 = "";
 			}
 
 			Connection con=getConnection();
 			PreparedStatement st=con.prepareStatement(
-					baseSql + condition + conditionis + order);
+					baseSql + condition + conditionis + order + ordee2);
 			st.setString(1, ent_year);
 			ResultSet rs=st.executeQuery();
 			while (rs.next()){
@@ -216,15 +220,17 @@ public class StudentsDAO extends DAO {
 			List<Student> list=new ArrayList<>();
 
 			String conditionis = "";
+			String ordee2 =", is_attend desc";
 			String order = " order by ENT_YEAR desc";
 
 			if(isAttend){
 				conditionis = "is_attend = true";
+				ordee2 = "";
 			}
 
 			Connection con=getConnection();
 			PreparedStatement st=con.prepareStatement(
-					baseSql + conditionis + order);
+					baseSql + conditionis + order + ordee2);
 			ResultSet rs=st.executeQuery();
 			while (rs.next()){
 				Student p=new Student();
