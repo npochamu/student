@@ -48,7 +48,7 @@ public class TestListSubjectDAO extends DAO {
 	}
 
 
-	//指定クラス×指定科目×全学生（在籍に限る）
+	//指定クラス×指定科目×全学生（退学含む）
     public List<TestListSubject> selectClassSubjectScore(String classNo, String subCd, String entYear) throws Exception {
         List<TestListSubject> list = new ArrayList<>();
         Connection con = getConnection();
@@ -65,7 +65,7 @@ public class TestListSubjectDAO extends DAO {
 				+ ") as subt on s.student_no = subt.student_no and su.sub_cd = subt.subject_cd"
 				+ " where s.ent_year = ?"  // 入学年度フィルタリング
 				+ " and s.class_no = ?"  // クラス番号フィルタリング
-				+ " and s.is_attend = true"  // 在籍者に限定
+//				+ " and s.is_attend = true"  // 在籍者に限定
 				+ " order by s.student_no, su.sub_cd");
 
         st.setString(1, subCd);
