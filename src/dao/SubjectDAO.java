@@ -55,6 +55,16 @@ public class SubjectDAO extends DAO {
 			//SQL実行
 			int result = st.executeUpdate();
 			return result;
+		}catch (SQLException e) {
+
+//			参照整合性制約違反エラー
+				if (e.getSQLState().equals("23503")) {
+					System.out.println("daoで参照整合性違反エラー");
+					throw new SQLException("referenceError", e);
+				} else {
+					System.out.println("daoでエラー");
+					throw new SQLException("dbError", e);
+				}
 		}
 	}
 

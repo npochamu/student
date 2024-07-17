@@ -72,8 +72,14 @@ public class SubjectDeleteExecuteAction extends HttpServlet {
 		} catch (SQLException | NamingException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
+
+			if (e.getMessage().equals("referenceError")) {
+				//主キー重複メッセージをセット
+				request.setAttribute("errorMsg", "該当科目の成績データが存在するため削除できません");
+			}
 			//エラーページへ転送
 			request.getRequestDispatcher("error.jsp").forward(request, response);
+
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
