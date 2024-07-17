@@ -68,7 +68,7 @@
 					<ul class="nav nav-sidebar flex-column">
 						<li><a href="../mein/menu.jsp">メニュー</a></li>
 						<li><a href="../students/all">学生管理</a></li>
-						<li><a style="color:gray; pointer-events: none; cursor: default;">成績管理</a></li>
+<!-- 						<li><a style="color:gray; pointer-events: none; cursor: default;">成績管理</a></li> -->
 						<li><a href="../students/test_insert">成績登録</a></li>
 						<li><a href="../students/TestListAction">成績参照</a></li>
 						<li><a href="../students/SubjectListAction">科目管理</a></li>
