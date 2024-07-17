@@ -19,7 +19,7 @@
                     <form action="loginaction" method="post">
                         <div class="form-group">
                             <label for="userId">ID</label>
-                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" value="${userId }" maxlength="20" style="ime-mode:disabled" required>
+                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" value="${param.userId }" maxlength="20" style="ime-mode:disabled" required>
                         </div>
                         <div class="form-group">
                             <label for="password">パスワード</label>
