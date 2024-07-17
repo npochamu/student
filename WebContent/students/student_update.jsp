@@ -77,7 +77,7 @@
 
 <div class="col-3">
 <label class="form-label" for="name_kana">フリガナ</label>
-<input type="text" id="name_kana" name="name_kana" placeholder="フリガナを入力してください" pattern="^[ァ-ヶー]+$" required title="フリガナはカタカナで入力して下さい" class="form-control" value="<%String Student_kana=request.getParameter("Student_kana"); %><%=Student_kana %>">
+<input type="text" id="name_kana" name="name_kana" placeholder="フリガナを入力してください" pattern="^[ァ-ヶー]+$" required title="フリガナはカタカナで入力してください" class="form-control" value="<%String Student_kana=request.getParameter("Student_kana"); %><%=Student_kana %>">
 </div>
 
 <div class="col-2 form-check text-center">
