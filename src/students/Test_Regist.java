@@ -68,7 +68,7 @@ public class Test_Regist extends HttpServlet {
                 if (line > 0) {
                     request.setAttribute("message", "登録が完了しました");
                 } else {
-                    request.setAttribute("message", "登録する成績がありません");
+                    request.setAttribute("message", "登録できませんでした");
                 }
                 request.getRequestDispatcher("/students/test_regist_done.jsp").forward(request, response);
             } else {
