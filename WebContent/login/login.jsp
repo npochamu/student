@@ -19,7 +19,7 @@
                     <form action="loginaction" method="post">
                         <div class="form-group">
                             <label for="userId">ID</label>
-                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" maxlength="20" style="ime-mode:disabled" required>
+                            <input type="text" class="form-control" name="userId" placeholder="半角でご入力ください" value="${userId }" maxlength="20" style="ime-mode:disabled" required>
                         </div>
                         <div class="form-group">
                             <label for="password">パスワード</label>
@@ -53,3 +53,42 @@
         }
     }
 </script>
+
+
+[水曜日 11:22] 関野　桂子
+<h2>Request Parameters:</h2>
+<ul>
+   <%
+      java.util.Enumeration<String> parameterNames = request.getParameterNames();
+       while (parameterNames.hasMoreElements()) {
+           String paramName = parameterNames.nextElement();
+           String paramValue = request.getParameter(paramName);
+          out.println("<li>" + paramName + ": " + paramValue + "</li>");
+       }
+   %>
+</ul>
+
+<h2>Request Attributes:</h2>
+<ul>
+   <%
+      java.util.Enumeration<String> attributeNames = request.getAttributeNames();
+       while (attributeNames.hasMoreElements()) {
+           String attributeName = attributeNames.nextElement();
+           Object attributeValue = request.getAttribute(attributeName);
+
+           if (attributeValue instanceof java.util.List) {
+              java.util.List<?> list = (java.util.List<?>) attributeValue;
+              out.println("<li>" + attributeName + ":");
+              out.println("<ul>");
+               for (Object item : list) {
+                  out.println("<li>" + item + "</li>");
+               }
+              out.println("</ul>");
+              out.println("</li>");
+           } else {
+              out.println("<li>" + attributeName + ": " + attributeValue + "</li>");
+           }
+       }
+   %>
+</ul>
+

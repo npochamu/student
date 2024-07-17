@@ -80,7 +80,7 @@
                     </div>
                     <div class="col-2 form-check text-center">
                         <label class="form-check-label" for="student-f3-check">在学中
-                            <input type="checkbox" name="Zaigaku" value="1" id="student-f3-check">
+                            <input type="checkbox" name="Zaigaku" value="true" id="student-f3-check" <c:if test="${param.Zaigaku == 'true'}">checked</c:if>>
                         </label>
                     </div>
 
@@ -99,3 +99,40 @@
     </c:param>
 </c:import>
 <c:import url="/common/footer.jsp"/>
+
+
+[水曜日 11:22] 関野　桂子
+<h2>Request Parameters:</h2>
+<ul>
+   <%
+      java.util.Enumeration<String> parameterNames = request.getParameterNames();
+       while (parameterNames.hasMoreElements()) {
+           String paramName = parameterNames.nextElement();
+           String paramValue = request.getParameter(paramName);
+          out.println("<li>" + paramName + ": " + paramValue + "</li>");
+       }
+   %>
+</ul>
+
+<h2>Request Attributes:</h2>
+<ul>
+   <%
+      java.util.Enumeration<String> attributeNames = request.getAttributeNames();
+       while (attributeNames.hasMoreElements()) {
+           String attributeName = attributeNames.nextElement();
+           Object attributeValue = request.getAttribute(attributeName);
+
+           if (attributeValue instanceof java.util.List) {
+              java.util.List<?> list = (java.util.List<?>) attributeValue;
+              out.println("<li>" + attributeName + ":");
+              out.println("<ul>");
+               for (Object item : list) {
+                  out.println("<li>" + item + "</li>");
+               }
+              out.println("</ul>");
+              out.println("</li>");
+           } else {
+              out.println("<li>" + attributeName + ": " + attributeValue + "</li>");
+           }
+       }
+   %>
