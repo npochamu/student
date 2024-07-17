@@ -28,7 +28,8 @@
             <h2 class="h3 mb-3 fw-normal bg-secondary text-white py-2 px-4">成績管理</h2>
             <div class="my-2 text-end px-4">
             <div style="background-color: lightgreen; text-align: center;">
-			<p>登録が完了しました</p>
+<!--             完了or登録ゼロのメッセージ -->
+			<p>${message}</p>
 			</div>
 			</div>
 

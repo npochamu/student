@@ -54,7 +54,8 @@ public class TestDAO extends DAO{
 
 		PreparedStatement st=con.prepareStatement(
 				"select s.is_attend, sub.sub_cd as subject_cd, sub.sub_name, s.school_cd, "
-				+ "s.ent_year, s.class_no, s.student_no, s.student_name, t.test_no, t.point from student as s "
+				+ "s.ent_year, s.class_no, s.student_no, s.student_name, t.test_no, t.point, coalesce(cast(t.point as char),'') as pointstr"
+				+ " from student as s "
 				+ "left join test as t on s.student_no = t.student_no and t.subject_cd = ? and t.test_no = ? "
 				+ "left join subject sub on sub.sub_cd = ? "
 				+ "where s.ent_year = ? and s.class_no = ? and s.school_cd = ? "
@@ -76,6 +77,8 @@ public class TestDAO extends DAO{
 		    p.setStudent_No(rs.getString("student_no"));
 		    p.setStudent_Name(rs.getString("student_name"));
 			p.setPoint(rs.getInt("point"));
+			p.setPoint_str(rs.getString("pointstr"));
+//			System.out.println(rs.getString("pointstr"));
 			p.setSubject_Name(rs.getString("sub_name"));
 			list.add(p);
 
