@@ -34,7 +34,7 @@ public class Test_Search extends HttpServlet {
 	                hasErrors = true;
 	            }
 	            if (class_num == null || class_num.isEmpty()) {
-	                request.setAttribute("class_numError", "クラスを選択してください。");
+	                request.setAttribute("classError", "クラスを選択してください。");
 	                hasErrors = true;
 	            }
 	            if (sub_cd == null || sub_cd.isEmpty()) {
@@ -60,11 +60,12 @@ public class Test_Search extends HttpServlet {
 		        p.setClass_Num(class_num);
 		        p.setSubject_Cd(sub_cd);
 		        p.setTest_No(test_no);
+		        System.out.println("科目コード"+sub_cd); // デバッグ用の出力
 
 		        // DAOを使用して検索処理
 		        TestDAO dao = new TestDAO();
 		        List<Test> list = dao.search2(p);
-		        System.out.println(list); // デバッグ用の出力
+		        System.out.println("デバッグ"+list); // デバッグ用の出力
 
 		        // 検索結果をリクエスト属性に設定してJSPにフォワード
 		        request.setAttribute("students", list);

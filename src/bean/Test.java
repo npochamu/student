@@ -9,10 +9,16 @@ public class Test implements java.io.Serializable {
 	private String school_cd;
 	private int test_no;
 	private int point;
+	private String point_str;
 	private String class_num;
 	private String ent_year;
 	private String subject_name;
+//	private int sub_cd;
 	private String sub_name;
+
+
+
+
 
 	public String getStudent_No() {
 		return student_no;
@@ -50,6 +56,12 @@ public class Test implements java.io.Serializable {
 	public void setPoint(int point) {
 		this.point=point;
 	}
+	public String getPoint_str() {
+		return point_str;
+	}
+	public void setPoint_str(String point_str) {
+		this.point_str=point_str;
+	}
 	public String getClass_Num() {
 		return class_num;
 	}
@@ -68,7 +80,12 @@ public class Test implements java.io.Serializable {
 	public void setSubject_Name(String subject_name) {
 		this.subject_name=subject_name;
 	}
-
+//	public int getSub_Cd() {
+//		return sub_cd;
+//	}
+//	public void setSub_Cd(int sub_cd) {
+//		this.sub_cd=sub_cd;
+//	}
 	public String getSub_Name() {
 		return sub_name;
 	}
