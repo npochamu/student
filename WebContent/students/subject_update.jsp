@@ -47,6 +47,12 @@
 						value=${param.subCd!= null ? param.subCd : ''} readonly>
 						<%-- 				${subjectBean.subCd} --%>
 </div>
+
+				<!-- メッセージ表示：科目更新対象が削除済だった場合-->
+				<c:if test="${subjectBean.getSubCd()==null}">
+					<p class="ml-3" style="color: red;">科目が存在していません</p>
+				</c:if>
+
 <div class="form-group mb-3 col-6" >
 						<label class="form-label" for="subName">科目名</label>
 						<input type="text" id="subName" name="subName"
@@ -58,10 +64,7 @@
 					test="${subjectBean.subName != null && param.subName != subjectBean.subName}">
 					<p class="ml-3" style="color: red;">科目名は現在「${subjectBean.subName}」に変更されています</p>
 				</c:if>
-				<!-- メッセージ表示：科目更新対象が削除済だった場合-->
-				<c:if test="${subjectBean.getSubCd()==null}">
-					<p class="ml-3" style="color: red;">科目が存在していません</p>
-				</c:if>
+
 <div class="mb-3 col-3">
 				<button type="submit" class="btn btn-secondary">変更</button>
 </div>

@@ -44,6 +44,13 @@ public class SubjectCreateExecuteAction extends HttpServlet {
 		String subName = request.getParameter("subName");
 		String subCd = request.getParameter("subCd");
 
+        // 科目コード文字数チェック: 3文字ではないときエラー
+		if (!subCd.matches("^[a-zA-Z0-9]{3}$")) {
+		    request.setAttribute("insertErrorMsg", "科目コードは3文字の半角英数字で入力してください");
+		    request.getRequestDispatcher("subject_create.jsp").forward(request, response);
+		    return;
+		}
+
 		//科目ロジックの作成
 		SubjectDAO dao = new SubjectDAO();
 
@@ -71,7 +78,7 @@ public class SubjectCreateExecuteAction extends HttpServlet {
 			Subject subjectBean_2 = dao.getSubjectBean(subCd, sc);
             // 重複チェック: 取得したkamokuBeanが空でないかを確認
             if (subjectBean_2.getSubName() != null && !subjectBean_2.getSubName().isEmpty()) {
-                request.setAttribute("insertErrorMsg", "科目コードが重複しています。");
+                request.setAttribute("insertErrorMsg", "科目コードが重複しています");
                 request.getRequestDispatcher("subject_create.jsp").forward(request, response);
                 return;
             }
