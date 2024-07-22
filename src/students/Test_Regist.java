@@ -102,7 +102,7 @@ public class Test_Regist extends HttpServlet {
                 request.setAttribute("students", pointList);
                 request.getRequestDispatcher("/students/test_regist.jsp").forward(request, response);
 
-            } else if  (hasValidInput) {
+            } else if  (hasValidInput&&!hasPointError) {
 //            	点数が空白のデータは処理しないのはdaoで処理
 
                 TestDAO dao = new TestDAO();

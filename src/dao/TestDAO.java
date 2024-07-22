@@ -96,7 +96,6 @@ public class TestDAO extends DAO{
 
 	public int Insert2(List<Test> points) throws Exception {
 
-		List<Test> list = new ArrayList<>();
 		Connection con=getConnection();
 
 //    テスト情報を登録
@@ -108,11 +107,15 @@ public class TestDAO extends DAO{
 		int line = 0;
 	    for (int i = 0; i < points.size(); i++) {
 	        Test test = points.get(i);
+	        if(test.getPoint_str().equals("")) {
+	        	continue;
+	        }
 	        st.setString(1, test.getStudent_No());
 	        st.setString(2, test.getSubject_Cd());
 	        st.setString(3, test.getSchool_Cd());
 	        st.setInt(4, test.getTest_No());
-	        st.setInt(5, test.getPoint());
+//	        ★ここ変えた
+	        st.setInt(5, Integer.parseInt(test.getPoint_str()));
 	        st.setString(6, test.getClass_Num());
 
 	//   	SQL繰り返した結果を成功行数に追加
