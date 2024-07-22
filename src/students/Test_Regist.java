@@ -49,6 +49,10 @@ public class Test_Regist extends HttpServlet {
                 String pointParam = request.getParameter("point" + stuN);
 
 //                if (pointParam != null && !pointParam.trim().isEmpty()) {
+                if (!pointParam.matches("^(100|[1-9]?[0-9])$")) {
+                	hasPointError = true;
+                }
+
 
                 try {
                     int point = Integer.parseInt(pointParam);
