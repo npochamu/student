@@ -140,7 +140,7 @@
                                 String encodedseibetu = URLEncoder.encode(student_seibetu, "UTF-8");
                                 request.setAttribute("encodedseibetu", encodedseibetu);
                                 %>
-                                <td><a href="student_update.jsp?Year=${student.getEnt_Year() }&Student_no=${student.getStudent_No()}&Student_name=${encodedName }&Student_kana=${encodedKana }&Class_No=${student.getClass_No()}&Gender=${encodedseibetu }&Is_Atend=${student.getIs_Attend()}">変更</a></td>
+                                <td><a href="student_update.jsp?Year=${student.getEnt_Year() }&Student_no=${student.getStudent_No()}&Student_name=${encodedName }&Student_kana=${encodedKana }&Class_No=${student.getClass_No()}&Gender=${encodedseibetu }&Is_Attend=${student.getIs_Attend()}">変更</a></td>
                                 <!-- <td><a href="delete?Number=${student.getStudent_No()}">削除</a></td> -->
                             </tr>
                         </c:forEach>
