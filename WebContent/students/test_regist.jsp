@@ -109,7 +109,7 @@
 							<c:set var="errorMessages" value="${errorMessages}回数と" />
 						</c:if> <c:if test="${not empty errorMessages}">
 							<span style="color: red;"> <c:out
-									value="${fn:substring(errorMessages, 0, fn:length(errorMessages) - 1)}" />を選択してください。
+									value="${fn:substring(errorMessages, 0, fn:length(errorMessages) - 1)}" />を選択してください
 							</span>
 						</c:if>
 					</span>
