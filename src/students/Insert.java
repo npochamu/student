@@ -120,6 +120,6 @@ public class Insert extends HttpServlet {
     // 氏名のチェック
     private boolean Student_Namecheck(String name) {
         // 漢字、ひらがな、カタカナ、英語のみで構成されているかどうかをチェックする
-        return name.matches("[一-龯々ぁ-んァ-ヶa-zA-Z]+");
+        return name.matches("[一-龯々ぁ-んァ-ヶa-zA-Zー]+");
     }
 }
