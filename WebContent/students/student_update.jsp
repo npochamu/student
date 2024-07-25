@@ -31,7 +31,7 @@
 
 <div class="col-3">
 <label class="form-label" for="ent_year">入学年度</label>
-<span id="ent_year"><%String Year=request.getParameter("Year"); %><%=Year %></span>
+<br><span id="ent_year"><%String Year=request.getParameter("Year"); %><%=Year %></span>
 <input type="hidden" id="ent_year" name="ent_year" value=<%=Year %>>
 </div>
 
@@ -60,7 +60,7 @@
 
 <div class="col-3">
 <label class="form-label" for="student_id">学生番号</label>
-<span id="student_id_display"><%String Student_no=request.getParameter("Student_no"); %><%=Student_no %></span>
+<br><span id="student_id_display"><%String Student_no=request.getParameter("Student_no"); %><%=Student_no %></span>
 <input type="hidden" id="student_id" name="student_id" value="<%=Student_no %>">
 </div>
 
