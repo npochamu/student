@@ -50,7 +50,7 @@
 						<label class="form-label" for="ent_year">入学年度</label> <select
 							name="ent_year" id="ent_year" class="form-control">
 							<option value="">----</option>
-							<c:forEach begin="2014" end="2025" var="year">
+							<c:forEach begin="2014" end="2034" var="year">
 								<option value="${year}"
 									<c:if test="${year == param.ent_year}">selected</c:if>>${year}</option>
 							</c:forEach>
