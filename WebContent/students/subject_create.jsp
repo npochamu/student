@@ -52,7 +52,7 @@
 					<label class="form-label" for="subName">科目名</label> <input
 						type="text" id="subName" name="subName" class="form-control"
 						value="${param.subName!= null ? param.subName : ''}"
-						placeholder="科目名を入力してください" required class="form-control">
+						placeholder="科目名を入力してください" required class="form-control" maxlength="20">
 				</div>
 
 
