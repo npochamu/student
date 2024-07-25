@@ -61,8 +61,8 @@
                     </div>
 						<c:set var="zaigakufalse" value="false"/>
 	                    <c:forEach var="student" items="${students}">
-    						<input type="hidden" name="year2" value="${student.ent_Year}">
-    						<input type="hidden" name="classsno2" value="${student.class_No}">
+    						<input type="hidden" name="year2" value="${year3}">
+    						<input type="hidden" name="classsno2" value="${class3}">
 
     						<c:if test="${!zaigakufalse}">
     							<c:choose>
@@ -89,6 +89,10 @@
             </form>
             <c:choose>
                 <c:when test="${students.size()>0}">
+
+                	<input type="hidden" name="class3" value="${class3}">
+                	<input type="hidden" name="year3" value="${year3}">
+
                     <div class="ml-3">検索結果:${students.size()}件</div>
                     <table class="table table-hover mx-3" style="width: 95%">
                         <tr>
@@ -147,6 +151,10 @@
                     </table>
                 </c:when>
                 <c:when test="${all.size()>0}">
+
+                	<input type="hidden" name="class3" value="${class3}">
+                	<input type="hidden" name="year3" value="${year3}">
+
                 	<div class="ml-3">検索結果:${all.size()}件</div>
                     <table class="table table-hover mx-3" style="width: 95%">
                         <tr>

@@ -62,6 +62,10 @@ public class Search extends HttpServlet {
 				ent_year=request.getParameter("year2");
 				class_no=request.getParameter("classsno2");
 				is_attend=request.getParameter("zaigaku2");
+				System.out.println("なめこちゃ1ん");
+				System.out.println(ent_year);
+				System.out.println(class_no);
+				System.out.println(is_attend);
 
 
 				System.out.println(is_attend +"to");
@@ -98,6 +102,8 @@ public class Search extends HttpServlet {
 			// ここまで
 
 			request.setAttribute("classall", list2);
+			request.setAttribute("year3", ent_year);
+			request.setAttribute("class3", class_no);
 			request.getRequestDispatcher("student_list.jsp")
 				.forward(request, response);
 
