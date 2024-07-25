@@ -58,7 +58,7 @@ public class Search extends HttpServlet {
 
 			StudentsDAO dao=new StudentsDAO();
 
-			if(class_no != "" && (ent_year == "" || is_attend == "false")){
+			if(!(class_no.equals("")) && (ent_year.equals("") || is_attend.equals("false"))){
 				ent_year=request.getParameter("year2");
 				class_no=request.getParameter("classsno2");
 				is_attend=request.getParameter("zaigaku2");
@@ -74,20 +74,20 @@ public class Search extends HttpServlet {
                 request.setAttribute("errorMessage", "クラスを指定する場合は入学年度も指定してください");
 
 			}
-			if((ent_year != "" || is_attend == "false") && class_no == ""){
+			if((!(ent_year.equals("")) || is_attend == "false") && class_no.equals("")){
 				System.out.println("サメ1");
 
 				List<Student> list=dao.search(ent_year, isAttend);
 				System.out.print(list);
 				request.setAttribute("students", list);
 
-			}else if(ent_year != "" || class_no != "" || is_attend == "true"){
+			}else if(!(ent_year.equals("")) || !(class_no.equals("")) || is_attend.equals("true")){
 				System.out.println("サメ");
 
 				List<Student> list=dao.search(ent_year, class_no, isAttend);
 				request.setAttribute("students", list);
 
-			}else if(isAttend == true && (ent_year == "" && class_no == "" )){
+			}else if(is_attend.equals("true") && (ent_year.equals("") && class_no.equals(""))){
 				List<Student> list=dao.search(isAttend);
 				request.setAttribute("students", list);
 			}else{
