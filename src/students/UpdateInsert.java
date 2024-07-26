@@ -3,6 +3,7 @@ package students;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +21,17 @@ import tool.Page;
 
 public class UpdateInsert extends HttpServlet {
 
-	public void doPost (
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+	public void processRequest (
 
 			HttpServletRequest request, HttpServletResponse response
 
@@ -88,12 +99,14 @@ public class UpdateInsert extends HttpServlet {
 					request.setAttribute("insert2", "変更が完了しました");
 					request.getRequestDispatcher("sturegiser_complete.jsp")
 						.forward(request, response);
-
+				}else{
+					List<Student> list=dao.all();
+					request.setAttribute("all", list);
+					request.setAttribute("class3", class_no);
+					request.getRequestDispatcher("student_list.jsp")
+						.forward(request, response);
 				}
 
-		        out.println("<br><br>");
-
-				out.println("<a href='student_list.jsp'>学生一覧</a>");
 
 			} catch (Exception e) {
 
