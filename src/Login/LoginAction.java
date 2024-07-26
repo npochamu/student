@@ -14,7 +14,7 @@ import bean.Teacher;
 import dao.TeacherDAO;
 import tool.Page;
 
-@WebServlet(urlPatterns={"/login/loginaction", "/students/loginaction", "/mein/loginaction"})
+@WebServlet(urlPatterns={"/login/loginaction", "/students/loginaction", "/mein/loginaction", "/logout/loginaction"})
 public class LoginAction extends HttpServlet {
 
 	public void doPost (
