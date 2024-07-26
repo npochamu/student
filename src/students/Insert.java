@@ -17,7 +17,19 @@ import tool.Page;
 @WebServlet(urlPatterns={"/students/insert"})
 public class Insert extends HttpServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doGet (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void doPost (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+    public void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         Page.header(out);

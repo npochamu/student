@@ -22,7 +22,19 @@ import tool.Page;
 
 public class Test_Regist extends HttpServlet {
 
-	public void doPost(
+	public void doGet (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void doPost (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	public void processRequest(
 
 			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -31,6 +43,12 @@ public class Test_Regist extends HttpServlet {
 		Page.header(out);
 
 		try {
+			HttpSession session = request.getSession();
+
+        	if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
 			int pointSize = Integer.parseInt(request.getParameter("student_count"));
 			String subCd = request.getParameter("sub_cd");
 			int testNo = Integer.parseInt(request.getParameter("test_no"));
@@ -85,7 +103,7 @@ public class Test_Regist extends HttpServlet {
 			}
 
 			if (hasPointError || !hasValidInput) {
-				HttpSession session = request.getSession();
+
 				// セッションスコープからインスタンスを取得
 				Teacher tc = (Teacher) session.getAttribute("teacher");
 

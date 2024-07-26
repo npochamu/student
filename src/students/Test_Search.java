@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Test;
 import dao.TestDAO;
@@ -17,12 +18,30 @@ import tool.Page;
 @WebServlet(urlPatterns={"/students/test_search"})
 public class Test_Search extends HttpServlet {
 
-	public void doPost (
+	public void doGet (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void doPost (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	public void processRequest (
 		    HttpServletRequest request, HttpServletResponse response
 		) throws ServletException, IOException {
 		    PrintWriter out = response.getWriter();
 		    Page.header(out);
 		    try {
+		    	HttpSession session = request.getSession();
+
+	        	if (session.getAttribute("teacher") == null) {
+					request.getRequestDispatcher("/login/login.jsp")
+						.forward(request, response);
+				}
 		    	boolean hasErrors = false;
 		        String ent_year = request.getParameter("ent_year");
 		        String class_num = request.getParameter("class_num");

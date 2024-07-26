@@ -31,10 +31,10 @@ public class SubjectCreateAction extends HttpServlet {
 
 		HttpSession session=request.getSession();
 
-//		if (session.getAttribute("teacher") == null) {
-//			request.getRequestDispatcher("/login/login.jsp")
-//				.forward(request, response);
-//		}
+		if (session.getAttribute("teacher") == null) {
+			request.getRequestDispatcher("/login/login.jsp")
+			.forward(request, response);
+	}
 
 		// insert.jspへ転送
 		request.getRequestDispatcher("subject_create.jsp").forward(request, response);

@@ -20,8 +20,20 @@ import tool.Page;
 @WebServlet(urlPatterns={"/students/search"})
 public class Search extends HttpServlet {
 
+	public void doGet (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
+	    public void doPost (
+	        HttpServletRequest request, HttpServletResponse response
+	    ) throws ServletException, IOException {
+	        processRequest(request, response);
+	    }
+
 	@SuppressWarnings("unused")
-	public void doPost (
+	public void processRequest (
 		HttpServletRequest request, HttpServletResponse response
 	) throws ServletException, IOException {
 		PrintWriter out=response.getWriter();
