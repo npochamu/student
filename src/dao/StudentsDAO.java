@@ -146,6 +146,9 @@ public class StudentsDAO extends DAO {
 			if(isAttend){
 				conditionis = "AND is_attend = true";
 				ordee2 = "";
+			}else{
+				conditionis = "AND is_attend = false";
+				ordee2 = "";
 			}
 
 			Connection con=getConnection();
@@ -184,8 +187,13 @@ public class StudentsDAO extends DAO {
 			String conditionis = "";
 			String ordee2 =", is_attend desc";
 
+
+
 			if(isAttend){
 				conditionis = "AND is_attend = true";
+				ordee2 = "";
+			}else{
+				conditionis = "AND is_attend = false";
 				ordee2 = "";
 			}
 
@@ -225,6 +233,9 @@ public class StudentsDAO extends DAO {
 
 			if(isAttend){
 				conditionis = "is_attend = true";
+				ordee2 = "";
+			}else{
+				conditionis = "is_attend = false";
 				ordee2 = "";
 			}
 
