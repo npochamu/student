@@ -40,6 +40,12 @@ public class Test_Insert extends HttpServlet {
         Page.header(out);
         try {
         	HttpSession session = request.getSession();
+
+        	if (session.getAttribute("teacher") == null) {
+				request.getRequestDispatcher("/login/login.jsp")
+					.forward(request, response);
+			}
+
         	// セッションスコープからインスタンスを取得
         	Teacher tc = (Teacher)session.getAttribute("teacher");
 
