@@ -70,7 +70,7 @@ public class Search extends HttpServlet {
 
 			StudentsDAO dao=new StudentsDAO();
 
-			if(!("".equals(class_no)) && ("".equals(ent_year) || "false".equals(is_attend))){
+			if(!("".equals(class_no)) && ("".equals(ent_year))){
 				ent_year=request.getParameter("year2");
 				class_no=request.getParameter("classsno2");
 				is_attend=request.getParameter("zaigaku2");
