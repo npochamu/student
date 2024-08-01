@@ -7,7 +7,9 @@
 
 <%-- 文字化けの対策 --%>
 <% request.setCharacterEncoding("UTF-8"); %>
+<style>
 
+</style>
 <c:import url="/common/base.jsp">
 
     <c:param name="scripts"></c:param>

@@ -21,7 +21,9 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
+<style>
 
+</style>
 
 <c:import url="TestListAction">
 	<c:param name="isFromTestSubject" value="true" />

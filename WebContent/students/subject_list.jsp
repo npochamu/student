@@ -20,7 +20,9 @@
 
 <%@page import="java.util.ArrayList, java.net.URLEncoder"%>
 <%@page import="bean.Subject"%>
+<style>
 
+</style>
 <c:import url="/common/base.jsp">
 
     <c:param name="scripts"></c:param>

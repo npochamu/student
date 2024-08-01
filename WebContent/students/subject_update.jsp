@@ -28,7 +28,9 @@
 <%
 	Subject subjectBean = (Subject) request.getAttribute("subjectBean");
 %>
+<style>
 
+</style>
 <c:import url="/common/base.jsp">
 
 	<c:param name="scripts"></c:param>

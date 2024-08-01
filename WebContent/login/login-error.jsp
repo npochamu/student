@@ -6,7 +6,9 @@
 
 <%-- 文字化けの対策 --%>
 <% request.setCharacterEncoding("UTF-8"); %>
+<style>
 
+</style>
 <c:import url="/common/base_login.jsp">
     <c:param name="title">
         <h1 class="toptitle">得点管理システム</h1>
